@@ -12,9 +12,12 @@ EditorBuildSettings:
     path: Assets/GameScript/Utill/UI/Progress.unity
     guid: f6cb75c7c16bc6d40849520e688d26c9
   - enabled: 1
-    path: Assets/GameScript/Utill/UI/Main.unity
+    path: Assets/scene/Main.unity
     guid: 64863881e9c7b7f4da344d1207f61e93
   - enabled: 1
     path: Assets/GameScript/Utill/UI/First.unity
     guid: 7279fbfa43b6c704f9dd76097033503b
+  - enabled: 1
+    path: Assets/scene/Game.unity
+    guid: 4570089602b65e44288bb698de026875
   m_configObjects: {}

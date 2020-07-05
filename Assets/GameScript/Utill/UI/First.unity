@@ -246,6 +246,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd00d434e6d999e48a09f8958c71546c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scene: Main
+  scene: Game
   loaders:
   - {fileID: 8041255078023344687, guid: 8fd2ee6b956cce14f81ee5f6651ffa3d, type: 3}
