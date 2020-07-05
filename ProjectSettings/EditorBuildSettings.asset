@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/GameScript/Utill/UI/Progress.unity
+    guid: f6cb75c7c16bc6d40849520e688d26c9
+  - enabled: 1
+    path: Assets/GameScript/Utill/UI/Main.unity
+    guid: 64863881e9c7b7f4da344d1207f61e93
+  - enabled: 1
+    path: Assets/GameScript/Utill/UI/First.unity
+    guid: 7279fbfa43b6c704f9dd76097033503b
+  m_configObjects: {}
