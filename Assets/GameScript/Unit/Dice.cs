@@ -7,7 +7,7 @@ using UnityEngine.EventSystems;
 public class Dice : MonoBehaviour,IDrag
 {
     [SerializeField]
-    DiceStatus diceStatus;
+    public DiceStatus diceStatus;
     
     // Start is called before the first frame update
 

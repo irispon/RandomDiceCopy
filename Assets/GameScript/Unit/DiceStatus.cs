@@ -8,7 +8,6 @@ public struct DiceStatus
     public AttackType attackType;
     public string diceName;
     public int diceEye;
-    public int deckLevel;
 
     public Sprite[] sprite;
 

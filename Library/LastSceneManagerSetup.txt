@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/scene/Game.unity
+- path: Assets/GameScript/Utill/UI/Loading/First.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0

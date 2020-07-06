@@ -10,6 +10,7 @@ public class DiceSlotPuncher : MonoBehaviour
 
     public int xSize;
     public int ySize;
+    public int RotateZ = 180;
 
     Dictionary<Vector2, GameObject> diceSlots;
 
@@ -25,7 +26,7 @@ public class DiceSlotPuncher : MonoBehaviour
                 dice_slot.transform.SetParent(transform);
                 SizeFitter.FittingSize(dice_slot);
                 diceSlots.Add(new Vector2(x, y), dice_slot);
-
+                dice_slot.transform.Rotate(new Vector3(0, 0, RotateZ));
             }
 
         }

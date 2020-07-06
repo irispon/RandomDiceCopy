@@ -12,16 +12,15 @@ public struct AttackType
     public float damage;
     public float attackSpeed;
     public float diffusion;
-    public float diffusionSpeed;
     public int range;
-
+    public string introduction;
 
 
 }
 
 public enum OfensiveType
 {
-    Direct,Explosion,Chain,Buff
+    Direct,Explosion,Chain,Buff,Debuff,Poison
 }
 
 public enum DamageType

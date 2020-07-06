@@ -21,6 +21,7 @@ public class SingletonObject<T> : MonoBehaviour where T:SingletonObject<T>
         {
             Destroy(gameObject);
         }
+        Init();
       //  DontDestroyOnLoad(gameObject);
     }
     // Start is called before the first frame update
@@ -34,8 +35,10 @@ public class SingletonObject<T> : MonoBehaviour where T:SingletonObject<T>
             {
                 if (instance == null)
                 {
+
                     GameObject gameObject = new GameObject();
                     instance = gameObject.AddComponent<T>();
+
                 }
             }
 
@@ -45,4 +48,9 @@ public class SingletonObject<T> : MonoBehaviour where T:SingletonObject<T>
 
     }
 
+
+    public virtual void Init()
+    {
+
+    }
 }

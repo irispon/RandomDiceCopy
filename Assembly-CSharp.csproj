@@ -62,8 +62,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\GameScript\DB\DBLoader.cs" />
+    <Compile Include="Assets\GameScript\DB\DiceCache.cs" />
     <Compile Include="Assets\GameScript\UiScript\DiceSlotPuncher.cs" />
-    <Compile Include="Assets\GameScript\UiScript\ImageTextManager.cs" />
     <Compile Include="Assets\GameScript\Unit\AbilityData.cs" />
     <Compile Include="Assets\GameScript\Unit\AttackType.cs" />
     <Compile Include="Assets\GameScript\Unit\AutoDotFitter.cs" />
@@ -122,9 +123,11 @@
     <Compile Include="Assets\GameScript\Utill\Singletons\SingletonSlave.cs" />
     <Compile Include="Assets\GameScript\Utill\SizeFitter.cs" />
     <Compile Include="Assets\GameScript\Utill\SpriteLoader.cs" />
-    <Compile Include="Assets\GameScript\Utill\UI\ILoader.cs" />
-    <Compile Include="Assets\GameScript\Utill\UI\LoadingManager.cs" />
-    <Compile Include="Assets\GameScript\Utill\UI\SceneLoader.cs" />
+    <Compile Include="Assets\GameScript\Utill\UI\ImageTextManager.cs" />
+    <Compile Include="Assets\GameScript\Utill\UI\Loading\ILoader.cs" />
+    <Compile Include="Assets\GameScript\Utill\UI\Loading\LoadingManager.cs" />
+    <Compile Include="Assets\GameScript\Utill\UI\Loading\SceneLoader.cs" />
+    <Compile Include="Assets\GameScript\Utill\UI\Size\GridRatio.cs" />
     <Compile Include="Assets\GameScript\Utill\Unit\FieldOfView.cs" />
     <Compile Include="Assets\GameScript\Utill\WDictionary.cs" />
     <Compile Include="Assets\GameScript\Utill\WJsonUtill.cs" />

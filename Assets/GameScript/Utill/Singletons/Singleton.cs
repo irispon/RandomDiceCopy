@@ -18,9 +18,12 @@ public class Singleton <T> where T :class,  new()
           {  
             lock (lockObj)
             {
-                if(instance == null)
+                Debug.Log("실행되냐1?");
+                if (instance == null)
                 {
+
                     instance = new T();
+
                 }
             }
 

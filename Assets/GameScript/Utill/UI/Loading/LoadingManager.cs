@@ -68,17 +68,26 @@ public class LoadingManager : SingletonObject<LoadingManager>
 
             foreach(ILoader loader in loaders)
             {
-
+                loader.Clear();
                 progressBar.fillAmount = 0;
                 progressText.text = loader.getContext();
                 timer = 0.0f;
+                bool errorCode = true;
 
                 Debug.Log("loader 테스트" + loader.isDone());
 
                 Task load = Task.Run(() =>
                 {
- 
-                    loader.Load();
+                    try
+                    {
+                        loader.Load();
+                    }
+                    catch (Exception e)
+                    {
+                        Debug.Log("에러 발생"+e);
+                        errorCode = false;
+                    }
+                   
                   
 
                 });
@@ -86,20 +95,20 @@ public class LoadingManager : SingletonObject<LoadingManager>
                
 
 
-                while (!loader.isDone())
+                while (!loader.isDone()&&errorCode)
                 {
      
                     yield return null;
                     timer =(timer+Time.deltaTime)*0.1f;
                     progressText.text = loader.getContext();
-             
+                   // Debug.Log("로더 루프 확인"+ loader.isDone());
                     if (loader.isDone())
                     {
                         progressBar.fillAmount = 1.0f;
                         subTextProgress(progressBar.fillAmount,100);
-                        Debug.Log("로더 종료");
-                        loader.Clear();
+                        
                         break;
+                       
                     }
                     else
                     {
@@ -109,6 +118,8 @@ public class LoadingManager : SingletonObject<LoadingManager>
 
                     
                 }
+                
+                Debug.Log("로더 종료");
             }
 
             loaders.Clear();
