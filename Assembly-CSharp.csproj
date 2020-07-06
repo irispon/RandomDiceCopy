@@ -63,7 +63,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\GameScript\DB\DBLoader.cs" />
+    <Compile Include="Assets\GameScript\DB\Deck.cs" />
     <Compile Include="Assets\GameScript\DB\DiceCache.cs" />
+    <Compile Include="Assets\GameScript\GameMaster.cs" />
     <Compile Include="Assets\GameScript\UiScript\DiceSlotPuncher.cs" />
     <Compile Include="Assets\GameScript\Unit\AbilityData.cs" />
     <Compile Include="Assets\GameScript\Unit\AttackType.cs" />
@@ -74,6 +76,7 @@
     <Compile Include="Assets\GameScript\Unit\MonsterStatus.cs" />
     <Compile Include="Assets\GameScript\Utill\Adadter.cs" />
     <Compile Include="Assets\GameScript\Utill\BoolParser.cs" />
+    <Compile Include="Assets\GameScript\Utill\Camera\CameraResolution.cs" />
     <Compile Include="Assets\GameScript\Utill\Corrector.cs" />
     <Compile Include="Assets\GameScript\Utill\DB\DBAccess.cs" />
     <Compile Include="Assets\GameScript\Utill\DB\DBManager.cs" />
@@ -117,6 +120,7 @@
     <Compile Include="Assets\GameScript\Utill\Loader\Loader.cs" />
     <Compile Include="Assets\GameScript\Utill\Loader\TestLoader.cs" />
     <Compile Include="Assets\GameScript\Utill\ObjectManager.cs" />
+    <Compile Include="Assets\GameScript\Utill\ObjectPool.cs" />
     <Compile Include="Assets\GameScript\Utill\Singletons\Singleton.cs" />
     <Compile Include="Assets\GameScript\Utill\Singletons\SingletonObject.cs" />
     <Compile Include="Assets\GameScript\Utill\Singletons\SingletonObjectSlave.cs" />

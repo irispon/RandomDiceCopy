@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
+using System.Text;
 using UnityEngine;
 
 public class DBManager :SingletonObject<DBManager>
@@ -16,23 +17,23 @@ public class DBManager :SingletonObject<DBManager>
     private string URI = "URI=file:";
     [SerializeField]
     private string serverPath;//서버가 있다 가정
-  //  private string copyPath;//복사하는 경로
-   // private string copyFilePath;
+    public StringBuilder stringBuilder;
 
-   // private int init=0;
-     
 
 
     public override void Init()
     {
+        stringBuilder = new StringBuilder();
         Debug.Log("DB 초기화");
-      //  copyPath = "./CopyDB/";
-      //  copyFilePath = copyPath + dbName + ".db";
-       // Debug.Log(copyPath);
-        serverPath = serverPath + "/" + dbName + ".db";
+        //  copyPath = "./CopyDB/";
+        //  copyFilePath = copyPath + dbName + ".db";
+        // Debug.Log(copyPath);
+   
+         serverPath = stringBuilder.Append(serverPath).Append("/").Append(dbName).Append(".db").ToString();
         Debug.Log(serverPath);
         string query = "SELECT Version FROM Certificate";
        IDataReader reader= DataBaseRead(query);
+
         while (reader.Read())
         {
             Debug.Log(reader.GetInt32(0));
