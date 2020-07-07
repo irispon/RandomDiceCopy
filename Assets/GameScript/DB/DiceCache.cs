@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class DiceCache : SingletonObject<DiceCache>
 {
-    public Dictionary<string, DiceStatus[]> diceCache{ get; private set; }
+    public Dictionary<string, DiceStatus> diceCache{ get; set; }
 
     public override void Init()
     {
-        diceCache = new Dictionary<string, DiceStatus[]>();
+        diceCache = new Dictionary<string, DiceStatus>();
         DontDestroyOnLoad(this);
         base.Init();
     }

@@ -8,17 +8,18 @@ public class Dice : MonoBehaviour,IDrag
 {
     [SerializeField]
     public DiceStatus diceStatus;
-    
+    protected int diceEye;
+    SpriteRenderer sprite;
     // Start is called before the first frame update
 
-    
+
     void Start()
     {
         tag = diceStatus.diceName;
-        SpriteRenderer sprite = GetComponent<SpriteRenderer>();
+        sprite = GetComponent<SpriteRenderer>();
         try
         {
-            sprite.sprite = diceStatus.sprite[diceStatus.diceEye];
+            sprite.sprite = diceStatus.sprite;
         }
         catch (Exception e)
         {

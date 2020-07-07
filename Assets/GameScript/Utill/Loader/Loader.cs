@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 
 
@@ -14,15 +15,22 @@ public class Loader :MonoBehaviour,ILoader
         return context;
     }
 
-    public virtual bool isDone()
+    public virtual bool IsDone()
     {
         return done;
     }
 
-    public virtual bool Load()
+    public virtual void Load()
     {
-        done = true;
-        return done;
+        Task load = Task.Run(() =>
+        {
+
+            ThreadLoad();
+
+        });
+
+
+            
     }
     public ILoader GetLoader()
     {
@@ -33,5 +41,11 @@ public class Loader :MonoBehaviour,ILoader
     public void Clear()
     {
         done = false;
+    }
+
+    public virtual void ThreadLoad()
+    {
+        
+
     }
 }

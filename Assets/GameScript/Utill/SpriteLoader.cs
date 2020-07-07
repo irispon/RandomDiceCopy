@@ -94,6 +94,7 @@ public class SpriteLoader
     public static Texture2D LoadTexture(string FilePath)
     {
         Debug.Log("텍스쳐 경로: "+FilePath);
+
         // Load a PNG or JPG file from disk to a Texture2D
         // Returns null if load fails
 

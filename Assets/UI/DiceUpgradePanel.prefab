@@ -89,7 +89,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c0951a88f8bb7a42a570c39e0addb25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cellSizeRatio: {x: 5, y: 0}
 --- !u!114 &8708843075775993612
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -129,3 +128,4 @@ MonoBehaviour:
   diceSlot: {fileID: 731698467612433649, guid: 2c41696f0e0efc14ab4feaf17d340662, type: 3}
   xSize: 5
   ySize: 1
+  RotateZ: 180

@@ -13,15 +13,20 @@ public class TestLoader :Loader
     }
 
 
-    public override bool Load()
+    public override void Load()
 
+    {
+
+        base.Load();
+       
+    }
+
+    public override void ThreadLoad()
     {
         Debug.Log("슬립 테스트");
         Thread.Sleep(2000);
         Debug.Log("슬립 테스트2");
         done = true;
-        return done;
     }
-
 
 }

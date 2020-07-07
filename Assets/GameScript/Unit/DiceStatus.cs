@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public struct DiceStatus
+public class DiceStatus
 {
     public AttackType attackType;
     public string diceName;
-    public int diceEye;
-
-    public Sprite[] sprite;
+    public int reinforce;
+    public int reinforceCost;
+    public string describe;
+    public Sprite sprite;
 
 }
 

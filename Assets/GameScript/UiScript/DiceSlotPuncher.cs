@@ -12,7 +12,7 @@ public class DiceSlotPuncher : MonoBehaviour
     public int ySize;
     public int RotateZ = 180;
 
-    Dictionary<Vector2, GameObject> diceSlots;
+    public Dictionary<Vector2, GameObject> diceSlots;
 
     public void Start()
     {

@@ -18,19 +18,19 @@ public class DBManager :SingletonObject<DBManager>
     [SerializeField]
     private string serverPath;//서버가 있다 가정
     public StringBuilder stringBuilder;
+    private bool check= false;
 
 
 
     public override void Init()
     {
-        stringBuilder = new StringBuilder();
-        Debug.Log("DB 초기화");
-        //  copyPath = "./CopyDB/";
-        //  copyFilePath = copyPath + dbName + ".db";
-        // Debug.Log(copyPath);
-   
-         serverPath = stringBuilder.Append(serverPath).Append("/").Append(dbName).Append(".db").ToString();
-        Debug.Log(serverPath);
+
+       stringBuilder = new StringBuilder();
+       Debug.Log("DB 초기화");
+       serverPath = stringBuilder.Append(serverPath).Append("/").Append(dbName).Append(".db").ToString();
+       Debug.Log(serverPath);
+        
+
         string query = "SELECT Version FROM Certificate";
        IDataReader reader= DataBaseRead(query);
 
@@ -129,7 +129,7 @@ public class DBManager :SingletonObject<DBManager>
         IDbCommand dbCommand = dbConnection.CreateCommand();
         dbCommand.CommandText = query;
         IDataReader dataReader = dbCommand.ExecuteReader();
-        Debug.Log("DB테스트");
+       
         //  Close();
         dbConnection.Close();
         dbCommand.Dispose();

@@ -10,47 +10,63 @@ public class GameMaster : SingletonObject<GameMaster>
     TextMeshProUGUI costText;
     [SerializeField]
     TextMeshProUGUI playerMoneyText;
+    [SerializeField]
+    GameObject dice;
     private int playerMoney;
     private int cost;
-    private int costIncrease;
-    private int reinForceIncrease;
+    private int throwCostIncrease;
+    private int reinForceCostIncrease;
     // Update is called once per frame
 
 
     public override void Init()
     {
-        playerMoney = 100;
+        playerMoney = 1000;
         cost = 10;
-        costIncrease = 20;
+        throwCostIncrease = 20;
+        reinForceCostIncrease = 50;
+        ChangeGUI();
     }
     void Update()
     {
         
     }
 
-    void Throw()
+   public void Throw()
     {
-        if (playerMoney>cost)
+        if (playerMoney>=cost)
         {
             playerMoney -= cost;
-            if (cost < 120)
+            cost += throwCostIncrease;
+
+            if (cost >= 120)
             {
-                cost += costIncrease;
+                cost = 120;
             }
+
 
             ChangeGUI();
         }
 
     }
 
-    void Reinforce(ref DiceStatus reinforce)
+    public void Reinforce(ref DiceStatus diceStatus)
     {
-
+        if (diceStatus.reinforceCost <= playerMoney)
+        {
+            playerMoney-= diceStatus.reinforceCost;
+            diceStatus.reinforceCost += reinForceCostIncrease;
+            diceStatus.reinforce++;
+            Debug.Log("강화 성공");
+            ChangeGUI();
+        }
+        
+        
     }
 
     void ChangeGUI()
     {
-        costText.text = playerMoney.ToString();
+        costText.text = cost.ToString();
         playerMoneyText.text = playerMoney.ToString();
     }
 }

@@ -2,7 +2,8 @@
 public interface ILoader
 {
     string getContext();
-    bool Load();
-    bool isDone();
+    void Load();
+    void ThreadLoad();
+    bool IsDone();
     void Clear();
 }

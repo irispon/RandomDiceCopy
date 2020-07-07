@@ -30,6 +30,7 @@ public class LoadingManager : SingletonObject<LoadingManager>
     {
         
         StartCoroutine(LoadScene(loaders));
+
        
     }
 
@@ -62,6 +63,7 @@ public class LoadingManager : SingletonObject<LoadingManager>
         Debug.Log("nextScene: "+ nextScene);
         float timer = 0.0f;
 
+
         if (loaders !=null)
         {
             Debug.Log("로더 실행");
@@ -72,37 +74,26 @@ public class LoadingManager : SingletonObject<LoadingManager>
                 progressBar.fillAmount = 0;
                 progressText.text = loader.getContext();
                 timer = 0.0f;
-                bool errorCode = true;
+              
 
-                Debug.Log("loader 테스트" + loader.isDone());
-
-                Task load = Task.Run(() =>
-                {
-                    try
-                    {
-                        loader.Load();
-                    }
-                    catch (Exception e)
-                    {
-                        Debug.Log("에러 발생"+e);
-                        errorCode = false;
-                    }
-                   
-                  
-
-                });
-
-               
+                Debug.Log("loader 테스트" + loader.IsDone());
 
 
-                while (!loader.isDone()&&errorCode)
+
+                loader.Load();
+
+
+                Debug.Log("loader 테스트" + loader.IsDone());
+
+
+                while (!loader.IsDone())
                 {
      
                     yield return null;
                     timer =(timer+Time.deltaTime)*0.1f;
                     progressText.text = loader.getContext();
                    // Debug.Log("로더 루프 확인"+ loader.isDone());
-                    if (loader.isDone())
+                    if (loader.IsDone())
                     {
                         progressBar.fillAmount = 1.0f;
                         subTextProgress(progressBar.fillAmount,100);

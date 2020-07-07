@@ -6,7 +6,7 @@ using UnityEngine;
 public class EnumUtills 
 {
 
-    public static T Parse<T>(string value) where T: struct
+    public static T Parse<T>(string value) where T:System.Enum
     {
         if (!typeof(T).IsEnum)
         {
