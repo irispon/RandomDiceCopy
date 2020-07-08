@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class UpgradeManager : MonoBehaviour
 {
-    DiceSlotPuncher puncher;
+    UpgradeSlotPuncher puncher;
     // Start is called before the first frame update
     private void Awake()
     {
@@ -13,7 +13,7 @@ public class UpgradeManager : MonoBehaviour
     }
     void Start()
     {
-        puncher = GetComponent<DiceSlotPuncher>();
+        puncher = GetComponent<UpgradeSlotPuncher>();
         try
         {
             List<DiceStatus> decks = Deck.GetInstance().decks["Player"];

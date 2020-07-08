@@ -17,6 +17,6 @@ public class SizeFitter
     {
         content.transform.SetParent(parent.transform);
         content.transform.localPosition = new Vector3(0, content.transform.localPosition.y);
-
+       
     }
 }

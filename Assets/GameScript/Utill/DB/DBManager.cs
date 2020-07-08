@@ -9,7 +9,7 @@ using UnityEngine;
 
 public class DBManager :SingletonObject<DBManager>
 {
-
+    public static string PlayerID= "Player";
     private const string dbName="RandomDice";
     public const string original_path= "original_path";
    // public const string copy_Path = "copyPath";

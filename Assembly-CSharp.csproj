@@ -66,10 +66,12 @@
     <Compile Include="Assets\GameScript\DB\DBLoader.cs" />
     <Compile Include="Assets\GameScript\DB\Deck.cs" />
     <Compile Include="Assets\GameScript\DB\DiceCache.cs" />
+    <Compile Include="Assets\GameScript\Game\DiceSlotPuncher.cs" />
     <Compile Include="Assets\GameScript\Game\UpgradeManager.cs" />
     <Compile Include="Assets\GameScript\Game\UpgradeSlot.cs" />
     <Compile Include="Assets\GameScript\GameMaster.cs" />
-    <Compile Include="Assets\GameScript\UiScript\DiceSlotPuncher.cs" />
+    <Compile Include="Assets\GameScript\UiScript\Login.cs" />
+    <Compile Include="Assets\GameScript\UiScript\UpgradeSlotPuncher.cs" />
     <Compile Include="Assets\GameScript\Unit\AbilityData.cs" />
     <Compile Include="Assets\GameScript\Unit\AttackType.cs" />
     <Compile Include="Assets\GameScript\Unit\AutoDotFitter.cs" />

@@ -7,7 +7,7 @@ using UnityEditor;
 public class SpriteLoader
 {
 
-    public const float defalutPixels = 32.0f;
+    public const float defalutPixels = 100.0f;
     public static Sprite LoadNewSprite(string FilePath, float PixelsPerUnit = defalutPixels)
     {
 

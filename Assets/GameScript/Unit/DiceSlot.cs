@@ -32,6 +32,9 @@ public class DiceSlot : MonoBehaviour
 
         return dice.diceStatus;
     }
-
+    public void Clear()
+    {
+       //오브젝트 풀 도입하자.
+    }
 
 }

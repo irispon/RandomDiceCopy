@@ -5,7 +5,7 @@ using UnityEngine;
 public class Deck : SingletonObject<Deck>
 {
    const string player = "Player";//임시적 처리
-   public Dictionary<string, List<DiceStatus>> decks { get; private set; }
+   public Dictionary<string, List<DiceStatus>> decks { get; set; }
 
     public override void Init()
     {

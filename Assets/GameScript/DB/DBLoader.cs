@@ -11,7 +11,7 @@ public class DBLoader : Loader
         DataParser parser = new DataParser();
         DBManager manager = DBManager.GetInstance();
         parser.DiceParse();
-        parser.DeckParser("Player");
+      
 
 
 

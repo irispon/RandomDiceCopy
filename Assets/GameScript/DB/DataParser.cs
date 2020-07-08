@@ -50,13 +50,41 @@ public class DataParser
 
 
     }
+    public bool IDcheck(string id,string password)
+    {
+        
+        stringBuilder.Clear();
+        string sql = stringBuilder.Append("SELECT*FROM Member WHERE Id =").Append("'").Append(id).Append("'").ToString();
+        try
+        {
+            IDataReader dataReader = DBManager.GetInstance().DataBaseRead(sql);
+            while (dataReader.Read())
+            {
+                Debug.Log(dataReader.GetValue(0) + "번호" + dataReader.GetValue(1));
+                if (password.Equals(dataReader.GetString(1)))
+                {
+                    Debug.Log("번호 일치");
+                    DBManager.PlayerID = id;
+                    return true;
+                } 
 
+            }
+        }
+        catch (Exception e)
+        {
+            Debug.Log("로그인 실패" + e);
+
+        }
+
+        return false;
+
+    }
     public void DeckParser(string id)
     {
-        Debug.Log("아이디 인증 과정 생략");
 
-        string sql = stringBuilder.Append("SELECT*FROM Player WHERE Player =").Append("'").Append(id).Append("'").ToString();
         stringBuilder.Clear();
+        string sql = stringBuilder.Append("SELECT*FROM Deck WHERE Id =").Append("'").Append(id).Append("'").ToString();
+
         IDataReader dataReader = DBManager.GetInstance().DataBaseRead(sql);
         List<DiceStatus> dices = new List<DiceStatus>();
         DiceCache cache = DiceCache.GetInstance();

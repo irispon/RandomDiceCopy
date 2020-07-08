@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DiceSlotPuncher : MonoBehaviour
+public class UpgradeSlotPuncher : MonoBehaviour
 {
 
     [SerializeField]

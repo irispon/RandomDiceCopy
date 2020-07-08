@@ -44,3 +44,12 @@ TagManager:
   - name: BackGround
     uniqueID: 1059069247
     locked: 0
+  - name: Board
+    uniqueID: 1519289713
+    locked: 0
+  - name: Slot
+    uniqueID: 4048376449
+    locked: 0
+  - name: Unit
+    uniqueID: 2307216683
+    locked: 0

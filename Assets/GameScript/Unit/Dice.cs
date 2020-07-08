@@ -13,21 +13,24 @@ public class Dice : MonoBehaviour,IDrag
     // Start is called before the first frame update
 
 
-    void Start()
+    void Awake()
     {
-        tag = diceStatus.diceName;
+        //tag = diceStatus.diceName;
         sprite = GetComponent<SpriteRenderer>();
-        try
-        {
-            sprite.sprite = diceStatus.sprite;
-        }
-        catch (Exception e)
-        {
-            Debug.Log("이미지 확인"+e);
-        }
+
       
     }
 
+    public void SetDiceStatus(DiceStatus diceStatus)
+    {
+        if (sprite == null)
+        {
+            sprite = GetComponent<SpriteRenderer>();
+        }
+        this.diceStatus = diceStatus;
+       
+        sprite.sprite = diceStatus.sprite;
+    }
     // Update is called once per frame
     void Update()
     {
