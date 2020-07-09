@@ -13,8 +13,8 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
+  - Dice
+  - Monster
   - 
   - 
   - 
@@ -52,4 +52,7 @@ TagManager:
     locked: 0
   - name: Unit
     uniqueID: 2307216683
+    locked: 0
+  - name: UI
+    uniqueID: 459600073
     locked: 0

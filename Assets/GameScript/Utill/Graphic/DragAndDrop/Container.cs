@@ -6,11 +6,18 @@ public class Container : SingletonObject<Container>
 {
     
     [HideInInspector] public GameObject content { get; set; }
-
+    [HideInInspector] public SpriteRenderer renderer;
     protected override void Awake()
     {
         base.Awake();
-        content = null;
+        if(content == null)
+        {
+            content = new GameObject();
+            renderer = content.AddComponent<SpriteRenderer>();
+        }
+        
+       
+
 
     }
 

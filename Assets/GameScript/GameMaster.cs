@@ -21,11 +21,13 @@ public class GameMaster : SingletonObject<GameMaster>
     private int throwCostIncrease;
     private int reinForceCostIncrease;
     private List<DiceStatus> deck;
+    private ObjectPool dicePool;
     // Update is called once per frame
 
 
     public override void Init()
     {
+        dicePool = ObjectPoolManager.GetInstance().Get(dice.name + "Pool");
         playerMoney = 1000;
         cost = 10;
         throwCostIncrease = 20;
@@ -60,7 +62,7 @@ public class GameMaster : SingletonObject<GameMaster>
 
     private void RandDice()
     {
-       GameObject diceObject= Instantiate(this.dice);
+        GameObject diceObject = dicePool.GetChild();
        Dice dice= diceObject.GetComponent<Dice>();
    
         dice.SetDiceStatus(deck[Random.Range(0,deck.Count)]);

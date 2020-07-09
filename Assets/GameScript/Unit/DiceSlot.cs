@@ -34,6 +34,7 @@ public class DiceSlot : MonoBehaviour
     }
     public void Clear()
     {
+        dice.child.Turn();
        //오브젝트 풀 도입하자.
     }
 

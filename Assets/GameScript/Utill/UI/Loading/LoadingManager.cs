@@ -156,14 +156,14 @@ public class LoadingManager : SingletonObject<LoadingManager>
             else
 
             {
-                Debug.Log(op.progress);
+               // Debug.Log(op.progress);
                 progressBar.fillAmount = Mathf.Lerp(progressBar.fillAmount, 1f, timer);
                 subTextProgress(progressBar.fillAmount, 100);
 
                 if (progressBar.fillAmount == 1.0f)
 
                 {
-                    Debug.Log("마지막?");
+                    Debug.Log("로딩 종료");
                     
                     progressBar.sprite = doneProgress;
                     progressText.text = "Done";

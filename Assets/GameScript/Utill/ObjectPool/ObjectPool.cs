@@ -7,19 +7,20 @@ public class ObjectPool : MonoBehaviour
 {
     [Header("Object Pool")]
     [SerializeField]
-    GameObject prefab;
+    PoolChild prefab;
     [SerializeField]
     int max;
     public Queue<GameObject> activeObjects { get; private set; }
     public Queue<GameObject> deActiveObjects { get; private set; }
     GameObject objectPools;
-
+    string poolName;
 
 
     public void Awake()
     {
-        ObjectPoolManager.GetInstance().Join(name, this);
-        Init();
+      poolName = prefab.name + "Pool";
+      ObjectPoolManager.GetInstance().Join(poolName, this);
+      Init();
 
     }
 
@@ -28,13 +29,14 @@ public class ObjectPool : MonoBehaviour
         activeObjects = new Queue<GameObject>();
         deActiveObjects = new Queue<GameObject>();
       //  DontDestroyOnLoad(this);
-        objectPools = new GameObject(name);
+        objectPools = new GameObject(poolName);
         Instantiates();
 
     }
 
-    public static ObjectPool MakeInstance(string name,int max=10 )
+    public static ObjectPool MakeInstance(string name, GameObject prefab, int max=10)
     {
+        
         GameObject gameObject = new GameObject();
         gameObject.AddComponent<ObjectPool>();
         ObjectPool objectPool = gameObject.GetComponent<ObjectPool>();
@@ -44,16 +46,17 @@ public class ObjectPool : MonoBehaviour
 
     private void Instantiates()
     {
-        // 총알을 생성해 child화 할 parent 게임오브젝트 생성(하이러키 뷰에서 관리하기 용이하도록)
+      
        
 
-        // 풀링 개수만큼 총알 생성 
+        // 풀링 개수만큼 생성 
         for (int i = 0; i < max; i++)
         {
-            GameObject obj = Instantiate<GameObject>(prefab, objectPools.transform);
-            name = prefab.name + i.ToString("00");
+            GameObject obj = Instantiate(prefab.gameObject, objectPools.transform);
+            obj.GetComponent<PoolChild>().SetObjectPool(this);
+            obj.name = prefab.name + i.ToString("00");
             obj.SetActive(false);
-          //  deActiveObjects.Enqueue(obj);
+            deActiveObjects.Enqueue(obj);
         }
 
 
@@ -72,7 +75,7 @@ public class ObjectPool : MonoBehaviour
         }
         else
         {
-            obj = Instantiate(prefab, objectPools.transform);
+            obj = Instantiate(prefab.gameObject, objectPools.transform);
         }
 
         obj.SetActive(true);
@@ -80,10 +83,12 @@ public class ObjectPool : MonoBehaviour
 
         return obj;
     }
-    public void TurnChild(GameObject gameObject)
+    public void TurnChild(PoolChild child)
     {
-        gameObject.SetActive(false);
-        deActiveObjects.Enqueue(gameObject);
+
+        child.gameObject.SetActive(false);
+        child.transform.SetParent(transform);
+        deActiveObjects.Enqueue(child.gameObject);
     }
 
     public void Clear()
@@ -91,7 +96,7 @@ public class ObjectPool : MonoBehaviour
         Destroy(objectPools);
         activeObjects.Clear();
         deActiveObjects.Clear();
-        objectPools = new GameObject();
+        Instantiates();
     }
 
 }
