@@ -1,10 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class DiceSlot : MonoBehaviour
 {
-    Dice dice;
+   public Dice dice;
 
 
     public void SetDice(Dice dice)
@@ -12,7 +13,9 @@ public class DiceSlot : MonoBehaviour
         this.dice = dice;
         dice.transform.SetParent(transform);
     }
-   public bool IsExist()
+
+
+    public bool IsExist()
     {
         if (dice == null)
         {
@@ -34,8 +37,11 @@ public class DiceSlot : MonoBehaviour
     }
     public void Clear()
     {
-        dice.child.Turn();
+        
+        dice.Clear();
        //오브젝트 풀 도입하자.
     }
+
+
 
 }

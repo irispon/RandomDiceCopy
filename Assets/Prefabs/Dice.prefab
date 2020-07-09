@@ -14,9 +14,10 @@ GameObject:
   - component: {fileID: 4178820547308193227}
   - component: {fileID: 2769859464970867747}
   - component: {fileID: 9068722189919993820}
+  - component: {fileID: 3701859576431005419}
   m_Layer: 8
   m_Name: Dice
-  m_TagString: Untagged
+  m_TagString: Dice
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -67,7 +68,11 @@ MonoBehaviour:
     reinforceCost: 500
     describe: 123
     sprite: {fileID: 21300000, guid: 0949c7392f89b474297957fcbaffdac0, type: 3}
-  child: {fileID: 0}
+    dotSprite: {fileID: 21300000, guid: d82e4faf646471a40b3b2ce4b877c944, type: 3}
+  child: {fileID: 9068722189919993820}
+  eye: {fileID: 1720857348582820379, guid: 0a4a463b3928bce4a95921509ab5cbe3, type: 3}
+  eyes: []
+  diceEye: 1
 --- !u!212 &1958859390967417488
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -151,7 +156,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -165,7 +170,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.5, y: 0.5}
   m_EdgeRadius: 0
 --- !u!114 &9068722189919993820
 MonoBehaviour:
@@ -180,3 +185,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectPool: {fileID: 0}
+--- !u!50 &3701859576431005419
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3551072927763212964}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

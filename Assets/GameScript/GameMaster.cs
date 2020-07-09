@@ -13,8 +13,8 @@ public class GameMaster : SingletonObject<GameMaster>
     [SerializeField]
     GameObject dice;
     [SerializeField]
-    List<DiceSlot> emptyDiceSlots;
-    List<DiceSlot> pullDiceSlots;
+    public List<DiceSlot> emptyDiceSlots;
+    public List<DiceSlot> pullDiceSlots;
 
     private int playerMoney;
     private int cost;
@@ -28,7 +28,7 @@ public class GameMaster : SingletonObject<GameMaster>
     public override void Init()
     {
         dicePool = ObjectPoolManager.GetInstance().Get(dice.name + "Pool");
-        playerMoney = 1000;
+        playerMoney = 3000;
         cost = 10;
         throwCostIncrease = 20;
         reinForceCostIncrease = 50;
@@ -43,24 +43,28 @@ public class GameMaster : SingletonObject<GameMaster>
 
    public void Throw()
     {
-        if (playerMoney>=cost)
+        if (emptyDiceSlots.Count>0)
         {
-            RandDice();
-            playerMoney -= cost;
-            cost += throwCostIncrease;
-         
-            if (cost >= 120)
+            if (playerMoney >= cost)
             {
-                cost = 120;
+                RandDice();
+                playerMoney -= cost;
+                cost += throwCostIncrease;
+
+                if (cost >= 120)
+                {
+                    cost = 120;
+                }
+
+
+                ChangeGUI();
             }
-
-
-            ChangeGUI();
         }
+
 
     }
 
-    private void RandDice()
+    private Dice RandDice()
     {
         GameObject diceObject = dicePool.GetChild();
        Dice dice= diceObject.GetComponent<Dice>();
@@ -70,6 +74,29 @@ public class GameMaster : SingletonObject<GameMaster>
         emptyDiceSlots.Remove(diceSlot);
         pullDiceSlots.Add(diceSlot);
         diceSlot.SetDice(dice);
+
+        return dice;
+
+    }
+
+    public void SynthesisDice(GameObject from,GameObject to)
+    {
+        Debug.Log("합성"+from.name+ to.name);
+        DiceSlot fromSlot = from.GetComponentInParent<DiceSlot>();
+        DiceSlot toSlot = to.GetComponentInParent<DiceSlot>();
+
+        Debug.Log(fromSlot.name);
+        Debug.Log(toSlot.name);
+
+        fromSlot.Clear();
+
+        emptyDiceSlots.Add(fromSlot);
+        pullDiceSlots.Remove(fromSlot);
+        //빈 공간 관리
+
+        toSlot.dice.diceEye++;//목표 다이스 눈 증가
+        toSlot.dice.SetDiceStatus(deck[Random.Range(0, deck.Count)]);
+
 
     }
 

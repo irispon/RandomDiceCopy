@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Container : SingletonObject<Container>
 {
-    
     [HideInInspector] public GameObject content { get; set; }
     [HideInInspector] public SpriteRenderer renderer;
     protected override void Awake()

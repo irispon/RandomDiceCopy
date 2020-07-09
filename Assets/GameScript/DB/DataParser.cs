@@ -28,7 +28,7 @@ public class DataParser
                 diceStatus.diceName = dataReader.GetString(0);
                 //diceStatus.diceEye = 1;
                 diceStatus.sprite = SpriteLoader.LoadNewSprite(dataReader.GetString(1));
-
+                diceStatus.dotSprite = SpriteLoader.LoadNewSprite(dataReader.GetString(1).Replace("Dice.png", "Dot.png"));
                 diceStatus.attackType.ofensiveType = EnumUtills.Parse<OfensiveType>(dataReader.GetString(2));
                 diceStatus.attackType.damageType = EnumUtills.Parse<DamageType>(dataReader.GetString(3));
                 diceStatus.attackType.target = EnumUtills.Parse<Target>(dataReader.GetString(4));

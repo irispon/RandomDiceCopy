@@ -62,7 +62,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\GameScript\Utill\Unit\Editor\FieldOfViewEditor.cs" />
+    <Compile Include="Assets\Utill\Unit\Editor\FieldOfViewEditor.cs" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>D:/UnityProject/CopyDefense/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>

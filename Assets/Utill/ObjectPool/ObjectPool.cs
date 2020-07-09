@@ -10,7 +10,7 @@ public class ObjectPool : MonoBehaviour
     PoolChild prefab;
     [SerializeField]
     int max;
-    public Queue<GameObject> activeObjects { get; private set; }
+    public List<GameObject> activeObjects { get; private set; }
     public Queue<GameObject> deActiveObjects { get; private set; }
     GameObject objectPools;
     string poolName;
@@ -26,7 +26,7 @@ public class ObjectPool : MonoBehaviour
 
     public  void Init()
     {
-        activeObjects = new Queue<GameObject>();
+        activeObjects = new List<GameObject>();
         deActiveObjects = new Queue<GameObject>();
       //  DontDestroyOnLoad(this);
         objectPools = new GameObject(poolName);
@@ -79,7 +79,7 @@ public class ObjectPool : MonoBehaviour
         }
 
         obj.SetActive(true);
-        activeObjects.Enqueue(obj);
+        activeObjects.Add(obj);
 
         return obj;
     }
@@ -87,8 +87,9 @@ public class ObjectPool : MonoBehaviour
     {
 
         child.gameObject.SetActive(false);
-        child.transform.SetParent(transform);
+        child.transform.SetParent(objectPools.transform);
         deActiveObjects.Enqueue(child.gameObject);
+        activeObjects.Remove(child.gameObject);
     }
 
     public void Clear()
