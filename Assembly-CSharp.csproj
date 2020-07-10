@@ -80,6 +80,7 @@
     <Compile Include="Assets\GameScript\Unit\DiceSlot.cs" />
     <Compile Include="Assets\GameScript\Unit\DiceStatus.cs" />
     <Compile Include="Assets\GameScript\Unit\Enemy.cs" />
+    <Compile Include="Assets\GameScript\Unit\EnemyControler.cs" />
     <Compile Include="Assets\GameScript\Unit\MonsterStatus.cs" />
     <Compile Include="Assets\Utill\Adadter.cs" />
     <Compile Include="Assets\Utill\BoolParser.cs" />
