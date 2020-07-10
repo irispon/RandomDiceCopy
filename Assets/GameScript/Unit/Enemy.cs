@@ -4,5 +4,9 @@ using UnityEngine;
 
 public class Enemy 
 {
-    
+    public int maxHp;
+    public int hp;
+    public float speed;
+    public Sprite sprite;
+
 }
