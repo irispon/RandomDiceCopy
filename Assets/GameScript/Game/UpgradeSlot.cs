@@ -11,12 +11,14 @@ public class UpgradeSlot : MonoBehaviour
     DiceStatus diceStatus;
     Image image;
     StringBuilder stringBuilder;
+    GameMaster master;
     public void Awake()
     {
 
         manager = GetComponent<ImageTextManager>();
         image = GetComponent<Image>();
         stringBuilder = new StringBuilder();
+        master = GameObject.Find("UserBoard").GetComponent<GameMaster>();
     }
 
     public void SetDiceStatus( DiceStatus diceStatus)
@@ -36,7 +38,7 @@ public class UpgradeSlot : MonoBehaviour
 
     public void Change()
     {
-        GameMaster.GetInstance().Reinforce(ref diceStatus);
+        master.Reinforce(ref diceStatus);
         Debug.Log("강화:"+ diceStatus.diceName + "강화도:"+diceStatus.reinforce);
         manager.texts[0].text = stringBuilder.Append("").Append((diceStatus.reinforce + 1)).Append("Lv").ToString();
         manager.texts[1].text = diceStatus.reinforceCost.ToString();

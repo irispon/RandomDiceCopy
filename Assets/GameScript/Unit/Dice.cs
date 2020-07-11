@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class Dice : MonoBehaviour, IDrag, IDrop
+public class Dice : MonoBehaviour, IDrag
 {
     [SerializeField]
     public DiceStatus diceStatus;
@@ -17,18 +17,20 @@ public class Dice : MonoBehaviour, IDrag, IDrop
     [HideInInspector]public int diceEye = 1;
     public SpriteRenderer sprite;
     // Start is called before the first frame update
-
+    GameMaster master;
     Dice container;
     Vector3 tmpPositon;
     //  ObjectPool objectPool;
    
     void Awake()
     {
+    
         child = GetComponent<PoolChild>();
         //tag = diceStatus.diceName;
         sprite = GetComponent<SpriteRenderer>();
         name = nameof(Dice);
         eyes = new List<DiceEye>();
+       
 
 
     }
@@ -45,6 +47,10 @@ public class Dice : MonoBehaviour, IDrag, IDrop
         MakeEye(diceEye);
     }
     // Update is called once per frame
+    public void Start()
+    {
+        master = child.objectPool.GetComponent<GameMaster>();
+    }
 
     public void MakeEye(int eye)
     {
@@ -82,10 +88,6 @@ public class Dice : MonoBehaviour, IDrag, IDrop
      
     }
 
-    void Update()
-    {
-        
-    }
     
     void LevelUp()
     {
@@ -107,7 +109,7 @@ public class Dice : MonoBehaviour, IDrag, IDrop
        
         StartCoroutine(CallBack.waitThenCallback(0, () => {
 
-            foreach (DiceSlot otherDice in GameMaster.GetInstance().pullDiceSlots)
+            foreach (DiceSlot otherDice in master.pullDiceSlots)
             {
                 if ((!diceStatus.Equals(otherDice.GetDiceInfo())) || !diceEye.Equals(otherDice.dice.diceEye))
                 {
@@ -151,7 +153,7 @@ public class Dice : MonoBehaviour, IDrag, IDrop
   
           
 
-        foreach (DiceSlot otherDice in GameMaster.GetInstance().pullDiceSlots)
+        foreach (DiceSlot otherDice in master.pullDiceSlots)
         {
             otherDice.dice.sprite.color = new Color32(255, 255, 255, 255);
         }
@@ -169,7 +171,7 @@ public class Dice : MonoBehaviour, IDrag, IDrop
         {
             if (diceEye<4)
             {
-                GameMaster.GetInstance().SynthesisDice(gameObject, container.gameObject);
+                    master.SynthesisDice(gameObject, container.gameObject);
             }
             
         }
@@ -179,21 +181,6 @@ public class Dice : MonoBehaviour, IDrag, IDrop
        
     }
 
-    public void OnDrop(PointerEventData eventData)
-    {
-       // Debug.Log("드롭"+name);
-    }
-
-    public void OnPointerEnter(PointerEventData eventData)
-    {
-        // sprite.color = new Color32(255, 255, 255, 100);
-       // Debug.Log("Point Enter"+name);
-    }
-
-    public void OnPointerExit(PointerEventData eventData)
-    {
-        //sprite.color = new Color32(255, 255, 255, 100);
-    }
     public void Clear()
     {
         diceEye = 1;
@@ -236,6 +223,11 @@ public class Dice : MonoBehaviour, IDrag, IDrop
     {
        
         container = null;
+    }
+
+    public void OnEnable()
+    {
+        transform.localScale = new Vector3(1, 1, 1);
     }
 
 }

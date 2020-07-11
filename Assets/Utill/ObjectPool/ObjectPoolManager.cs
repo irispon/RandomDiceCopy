@@ -10,6 +10,7 @@ public class ObjectPoolManager : SingletonObject<ObjectPoolManager>
     public override void Init()
    {
         objectPools = new Dictionary<string, ObjectPool>();
+       
         DontDestroyOnLoad(this);
 
    }

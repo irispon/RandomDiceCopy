@@ -1,34 +1,39 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using TMPro;
 public class EnemyControler : MonoBehaviour
 {
     // Start is called before the first frame update
     SpriteRenderer sprite;
     [SerializeField]
-    List<Transform> paths;
-    Queue<Transform> destinations;
+
+    Queue<Vector3> destinations;
     [SerializeField]
     Enemy enemy;
-
+    PoolChild child;
+    [SerializeField]
+    TextMeshPro text;
     private void Awake()
     {
         sprite = GetComponent<SpriteRenderer>();
-        enemy.speed = 1.5f;
-        destinations = new Queue<Transform>(paths);
+        enemy.speed = 0.025f;
+        transform.localScale = new Vector3(1,1,1);
+  
     }
 
-    public IEnumerator MoveTo(Transform transform)
+
+    public IEnumerator MoveTo(Vector3 targetPositon)
     {
-        Vector3 localPositon = this.transform.localPosition;
-        Vector3 targetPositon = transform.localPosition;
-        Debug.Log("움직임 " + localPositon +"  "+ targetPositon);
+
+
+     //   Debug.Log("움직임 " + localPositon +"  "+ targetPositon);
       
-        for (; ((localPositon.x != targetPositon.x)&&(localPositon.y!= targetPositon.y));)
+
+        for (; this.transform.localPosition != targetPositon;)
         {
-            Debug.Log("움직임 "+ localPositon);
-            Vector3.MoveTowards(localPositon, targetPositon, enemy.speed);
+            //Debug.Log("움직임 "+ this.transform.localPosition);
+            this.transform.localPosition = Vector3.MoveTowards(this.transform.localPosition, targetPositon, enemy.speed);
             yield return null;
         }
 
@@ -37,16 +42,35 @@ public class EnemyControler : MonoBehaviour
         {
            StartCoroutine( MoveTo(destinations.Dequeue()));
         }
+        else
+        {
+
+            child.Turn();
+            
+        }
 
     }
-    void Start()
+    public void SetEnemy(Enemy enemy,Queue<Vector3> paths)
     {
+        destinations = new Queue<Vector3>(paths);
+       // sprite.sprite = enemy.sprite;
+        this.enemy = enemy;
+        text.text = enemy.maxHp.ToString();
+        enemy.hp = enemy.maxHp;
         if (destinations.Count > 0)
         {
             StartCoroutine(MoveTo(destinations.Dequeue()));
         }
-   
+
     }
+    void Start()
+    {
+
+        child = GetComponent<PoolChild>();
+
+
+    }
+
 
 
 }

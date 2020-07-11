@@ -26,10 +26,12 @@ public class ObjectPool : MonoBehaviour
 
     public  void Init()
     {
+
         activeObjects = new List<GameObject>();
         deActiveObjects = new Queue<GameObject>();
       //  DontDestroyOnLoad(this);
         objectPools = new GameObject(poolName);
+        objectPools.transform.SetParent(transform);
         Instantiates();
 
     }
@@ -53,7 +55,9 @@ public class ObjectPool : MonoBehaviour
         for (int i = 0; i < max; i++)
         {
             GameObject obj = Instantiate(prefab.gameObject, objectPools.transform);
-            obj.GetComponent<PoolChild>().SetObjectPool(this);
+            PoolChild poolChild = obj.GetComponent<PoolChild>();
+            poolChild.SetObjectPool(this);
+     
             obj.name = prefab.name + i.ToString("00");
             obj.SetActive(false);
             deActiveObjects.Enqueue(obj);

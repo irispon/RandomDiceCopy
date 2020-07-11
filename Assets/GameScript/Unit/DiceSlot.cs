@@ -12,6 +12,7 @@ public class DiceSlot : MonoBehaviour
     {
         this.dice = dice;
         dice.transform.SetParent(transform);
+        dice.transform.localScale = new Vector3(1, 1, 1);
     }
 
 

@@ -5,6 +5,7 @@ using UnityEngine;
 public class DiceCache : SingletonObject<DiceCache>
 {
     public Dictionary<string, DiceStatus> diceCache{ get; set; }
+    
 
     public override void Init()
     {
@@ -12,7 +13,8 @@ public class DiceCache : SingletonObject<DiceCache>
         DontDestroyOnLoad(this);
         base.Init();
     }
-
+    
+    
 
 
 }

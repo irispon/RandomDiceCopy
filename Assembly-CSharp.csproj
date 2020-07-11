@@ -66,7 +66,9 @@
     <Compile Include="Assets\GameScript\DB\DBLoader.cs" />
     <Compile Include="Assets\GameScript\DB\Deck.cs" />
     <Compile Include="Assets\GameScript\DB\DiceCache.cs" />
+    <Compile Include="Assets\GameScript\Game\BoardMaster.cs" />
     <Compile Include="Assets\GameScript\Game\DiceSlotPuncher.cs" />
+    <Compile Include="Assets\GameScript\Game\Spwan.cs" />
     <Compile Include="Assets\GameScript\Game\UpgradeManager.cs" />
     <Compile Include="Assets\GameScript\Game\UpgradeSlot.cs" />
     <Compile Include="Assets\GameScript\GameMaster.cs" />
@@ -83,6 +85,7 @@
     <Compile Include="Assets\GameScript\Unit\EnemyControler.cs" />
     <Compile Include="Assets\GameScript\Unit\MonsterStatus.cs" />
     <Compile Include="Assets\Utill\Adadter.cs" />
+    <Compile Include="Assets\Utill\APathFind.cs" />
     <Compile Include="Assets\Utill\BoolParser.cs" />
     <Compile Include="Assets\Utill\CallBack.cs" />
     <Compile Include="Assets\Utill\Camera\CameraResolution.cs" />
@@ -139,11 +142,13 @@
     <Compile Include="Assets\Utill\Singletons\SingletonSlave.cs" />
     <Compile Include="Assets\Utill\SizeFitter.cs" />
     <Compile Include="Assets\Utill\SpriteLoader.cs" />
+    <Compile Include="Assets\Utill\SpriteSize.cs" />
     <Compile Include="Assets\Utill\UI\ImageTextManager.cs" />
     <Compile Include="Assets\Utill\UI\Loading\ILoader.cs" />
     <Compile Include="Assets\Utill\UI\Loading\LoadingManager.cs" />
     <Compile Include="Assets\Utill\UI\Loading\SceneLoader.cs" />
     <Compile Include="Assets\Utill\UI\Size\GridRatio.cs" />
+    <Compile Include="Assets\Utill\UI\SortingLayerInMeshRenderer.cs" />
     <Compile Include="Assets\Utill\Unit\FieldOfView.cs" />
     <Compile Include="Assets\Utill\WDictionary.cs" />
     <Compile Include="Assets\Utill\WJsonUtill.cs" />

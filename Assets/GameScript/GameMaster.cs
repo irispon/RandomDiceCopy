@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GameMaster : SingletonObject<GameMaster>
+public class GameMaster:MonoBehaviour
 {
     [SerializeField]
     TextMeshProUGUI costText;
@@ -14,20 +14,22 @@ public class GameMaster : SingletonObject<GameMaster>
     GameObject dice;
     [SerializeField]
     public List<DiceSlot> emptyDiceSlots;
-    public List<DiceSlot> pullDiceSlots;
+    [SerializeField]
+    ObjectPool dicePool;
+    [HideInInspector]public List<DiceSlot> pullDiceSlots;
 
     private int playerMoney;
     private int cost;
     private int throwCostIncrease;
     private int reinForceCostIncrease;
     private List<DiceStatus> deck;
-    private ObjectPool dicePool;
+
     // Update is called once per frame
 
 
-    public override void Init()
+    public void Awake()
     {
-        dicePool = ObjectPoolManager.GetInstance().Get(dice.name + "Pool");
+      
         playerMoney = 3000;
         cost = 10;
         throwCostIncrease = 20;
@@ -36,6 +38,7 @@ public class GameMaster : SingletonObject<GameMaster>
         pullDiceSlots = new List<DiceSlot>();
         ChangeGUI();
     }
+
     void Update()
     {
         
