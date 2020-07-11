@@ -4,22 +4,71 @@ using UnityEngine;
 
 public class DiceEye : MonoBehaviour
 {
+    [HideInInspector] public SpriteRenderer sprite;
+    [SerializeField]
+    string objectPoolKey;
+    ObjectPool missileObjectPool;
+    FieldOfView view;
 
-    public SpriteRenderer sprite;
-
+    Dice dice;
     public void Awake()
     {
         sprite = GetComponent<SpriteRenderer>();
+        missileObjectPool = ObjectPoolManager.GetInstance().Get(objectPoolKey);
+        Debug.Log(missileObjectPool == null);
+        view = GetComponent<FieldOfView>();
+        
+
     }
     public void Init(Dice dice)
     {
-        dice = GetComponentInParent<Dice>();
-      
+      this.dice = dice;
       sprite.sprite = dice.diceStatus.dotSprite;
+      StartCoroutine(SearchAndDestroy());
+        
 
     }
     public void ChangeSprite(Sprite sprite)
     {
         this.sprite.sprite = sprite;
     }
-}
+    
+
+    IEnumerator SearchAndDestroy()
+    {
+
+           Collider2D target = view.GetTarget();
+            while (true)
+            {
+
+            if (target != null)
+            {
+                if (target.isActiveAndEnabled)
+                {
+                    GameObject gameObject = missileObjectPool.GetChild();
+                    gameObject.transform.position = this.transform.position;
+                    gameObject.GetComponent<Missile>().SetMissile(target, 0.5f, sprite.sprite, dice.diceStatus.attackType);
+                   
+                }
+                else
+                {
+                    target = view.GetTarget();
+                    
+
+                }
+
+            }
+            else
+            {
+               target = view.GetTarget();
+            }
+
+            yield return new WaitForSeconds(dice.diceStatus.attackType.attackSpeed);
+        }
+
+
+           
+
+        }
+
+    }

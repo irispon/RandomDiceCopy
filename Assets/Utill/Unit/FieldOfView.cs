@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System;
 
 public class FieldOfView : MonoBehaviour
 {
@@ -32,6 +33,20 @@ public class FieldOfView : MonoBehaviour
         }
     }
 
+    public Collider2D GetTarget(Act callback=null)
+    {
+        Collider2D targetsInViewRadius = Physics2D.OverlapCircle(transform.position, viewRadius, LayerMaskUtill.Composit(targetMask));
+        if (callback != null)
+        {
+            callback(targetsInViewRadius);
+        }
+  
+
+        return targetsInViewRadius;
+    }
+
+
+
     public List<Transform> GetTargetsTransform(Act act=null)
     {
         visibleTargets.Clear();
@@ -50,7 +65,7 @@ public class FieldOfView : MonoBehaviour
                 {
                    
                         visibleTargets.Add(target);
-                        act(target);
+                        act(targetsInViewRadius[i]);
                     
 
                 }
@@ -76,7 +91,7 @@ public class FieldOfView : MonoBehaviour
                 if (!Physics.Raycast(transform.position, dirToTarget, dstToTarget, LayerMaskUtill.Composit(obstacleMask)))
                 {
                     targetCollider.Add(targetsInViewRadius[i]);
-                    act(target);
+                    act(targetsInViewRadius[i]);
                 }
             }
         }
@@ -108,5 +123,7 @@ public class FieldOfView : MonoBehaviour
     }
 
 
-    public delegate void Act(Transform transform);
+    public delegate void Act(Collider2D target);
+
+
 }

@@ -68,6 +68,7 @@
     <Compile Include="Assets\GameScript\DB\DiceCache.cs" />
     <Compile Include="Assets\GameScript\Game\BoardMaster.cs" />
     <Compile Include="Assets\GameScript\Game\DiceSlotPuncher.cs" />
+    <Compile Include="Assets\GameScript\Game\Missile.cs" />
     <Compile Include="Assets\GameScript\Game\Spwan.cs" />
     <Compile Include="Assets\GameScript\Game\UpgradeManager.cs" />
     <Compile Include="Assets\GameScript\Game\UpgradeSlot.cs" />

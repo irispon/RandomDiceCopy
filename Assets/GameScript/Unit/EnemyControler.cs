@@ -63,6 +63,16 @@ public class EnemyControler : MonoBehaviour
         }
 
     }
+
+    public void Damage(float damage)
+    {
+        enemy.hp -= (int)damage;
+        text.text = enemy.hp.ToString();
+        if (enemy.hp <=0)
+        {
+            child.Turn();
+        }
+    }
     void Start()
     {
 
