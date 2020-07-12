@@ -45,11 +45,13 @@ public class EnemyControler : MonoBehaviour
         else
         {
 
-            child.Turn();
-            
+            Turn();
+
         }
 
     }
+
+
     public void SetEnemy(Enemy enemy,Queue<Vector3> paths)
     {
         destinations = new Queue<Vector3>(paths);
@@ -70,8 +72,13 @@ public class EnemyControler : MonoBehaviour
         text.text = enemy.hp.ToString();
         if (enemy.hp <=0)
         {
-            child.Turn();
+            Turn();
         }
+    }
+    private void Turn()
+    {
+        destinations.Clear();
+        child.Turn();
     }
     void Start()
     {
@@ -81,6 +88,6 @@ public class EnemyControler : MonoBehaviour
 
     }
 
-
+    
 
 }
