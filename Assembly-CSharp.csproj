@@ -66,6 +66,7 @@
     <Compile Include="Assets\GameScript\DB\DBLoader.cs" />
     <Compile Include="Assets\GameScript\DB\Deck.cs" />
     <Compile Include="Assets\GameScript\DB\DiceCache.cs" />
+    <Compile Include="Assets\GameScript\DB\ExplosionCache.cs" />
     <Compile Include="Assets\GameScript\Game\BoardMaster.cs" />
     <Compile Include="Assets\GameScript\Game\DiceSlotPuncher.cs" />
     <Compile Include="Assets\GameScript\Game\Missile.cs" />
@@ -85,6 +86,8 @@
     <Compile Include="Assets\GameScript\Unit\Enemy.cs" />
     <Compile Include="Assets\GameScript\Unit\EnemyControler.cs" />
     <Compile Include="Assets\GameScript\Unit\MonsterStatus.cs" />
+    <Compile Include="Assets\Insterface\Explosion.cs" />
+    <Compile Include="Assets\Insterface\IExplosion.cs" />
     <Compile Include="Assets\Utill\Adadter.cs" />
     <Compile Include="Assets\Utill\APathFind.cs" />
     <Compile Include="Assets\Utill\BoolParser.cs" />

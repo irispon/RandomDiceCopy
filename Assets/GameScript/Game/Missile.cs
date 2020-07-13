@@ -52,4 +52,16 @@ public class Missile : MonoBehaviour
 
         }
     }
+
+    private void OnDisable()
+    {
+        target = null;
+        Explosion();
+
+    }
+
+    private void Explosion()
+    {
+     
+    }
 }
