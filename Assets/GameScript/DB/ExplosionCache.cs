@@ -2,8 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ExplosionCache : Singleton<ExplosionCache>
+public class ExplosionCache : SingletonObject<ExplosionCache>
 {
-    Dictionary<OfensiveType, IExplosion> explosions;
+   public Dictionary<OfensiveType, IExplosion> explosions;
 
+    public override void Init()
+    {
+        explosions = new Dictionary<OfensiveType, IExplosion>();
+    }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public interface IExplosion
 {
-    void SetExplosion(AttackType type);
-    void Explod(); 
+
+    void Explode(Collider2D warhead, AttackType type); 
 
 }

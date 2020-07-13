@@ -23,7 +23,7 @@ public class Singleton <T> where T :class,  new()
                 {
 
                     instance = new T();
-
+                
                 }
             }
 
@@ -32,6 +32,7 @@ public class Singleton <T> where T :class,  new()
         
         return instance;
     }
+
 
 
 }

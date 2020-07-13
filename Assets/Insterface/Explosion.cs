@@ -4,13 +4,16 @@ using UnityEngine;
 
 public abstract class Explosion :IExplosion
 {
-    public abstract void Explod();
-    public abstract void SetExplosion(AttackType type);
-    // Start is called before the first frame update
-    public void Join()
-    {
+   protected ExplosionCache cache = ExplosionCache.GetInstance();
 
+
+    public virtual void Awake()
+    {
+        Join();
     }
 
+    // Start is called before the first frame update
+    public abstract void Join();
+    public abstract void Explode(Collider2D warhead, AttackType type);
 
 }
