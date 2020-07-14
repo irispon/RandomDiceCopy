@@ -8,7 +8,7 @@ public class Missile : MonoBehaviour
     Collider2D target;
     PoolChild poolChild;
     EnemyControler targetObject;
-    AttackType damage;
+    public AttackType attackType;
     ExplosionObject explosion;
 
     private void Awake()
@@ -23,7 +23,7 @@ public class Missile : MonoBehaviour
         this.target = target;
         targetObject = target.GetComponent<EnemyControler>();
         StartCoroutine(Shoot(target, speed));
-        this.damage = damage;
+        this.attackType = damage;
     }
     public void Start()
     {
@@ -50,9 +50,9 @@ public class Missile : MonoBehaviour
     
         if (collision.Equals(target))
         {
-            Debug.Log(name+"  "+collision.name);
-            targetObject.Damage(damage.damage);
-            Explode();
+          //  Debug.Log(name+"  "+collision.name);
+            targetObject.Damage(attackType.damage);
+            explosion.Explode(attackType);
             poolChild.Turn();
 
         }
@@ -60,16 +60,11 @@ public class Missile : MonoBehaviour
 
     private void OnDisable()
     {
-       // target = null;
+       target = null;
     
 
     }
 
-    public void Explode()
-    {
 
-   
-
-    }
 
 }
