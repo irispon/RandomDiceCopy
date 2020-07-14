@@ -1,23 +1,33 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class ExplosionObject : MonoBehaviour
 {
-    AttackType type;
+
     //애니메이션 관련 변수 추가
     IExplosion explosion;
-    Collider2D warHead;
+    BoxCollider2D warHead;
 
-    private void OnEnable()
+    public void Awake()
     {
-        type = GetComponentInParent<Dice>().diceStatus.attackType;
-        explosion = ExplosionCache.GetInstance().explosions[type.ofensiveType];
-        warHead = GetComponent<Collider2D>();
+        warHead = GetComponent<BoxCollider2D>();
     }
 
-    private void OnDisable()
+    public void Explode(AttackType type)
     {
-        explosion.Explode(warHead, type);
+
+        try
+        {
+            explosion = ExplosionCache.GetInstance().explosions[type.ofensiveType];
+            explosion.Explode(warHead, type);
+        }
+        catch(Exception e)
+        {
+            Debug.Log("딕셔너리 에러"+e);
+        }
+
     }
+
 }

@@ -52,6 +52,7 @@ public class DiceEye : MonoBehaviour
                 }
                 else
                 {
+                   
                     target = view.GetTarget();
                     
 

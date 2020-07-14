@@ -14,6 +14,6 @@ public abstract class Explosion :IExplosion
 
     // Start is called before the first frame update
     public abstract void Join();
-    public abstract void Explode(Collider2D warhead, AttackType type);
+    public abstract void Explode(BoxCollider2D warhead, AttackType type);
 
 }

@@ -19,7 +19,7 @@ public class EnemyControler : MonoBehaviour
         sprite = GetComponent<SpriteRenderer>();
         enemy.speed = 0.025f;
         transform.localScale = new Vector3(1,1,1);
-  
+   
     }
 
 

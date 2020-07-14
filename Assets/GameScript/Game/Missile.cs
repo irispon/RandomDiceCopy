@@ -9,11 +9,13 @@ public class Missile : MonoBehaviour
     PoolChild poolChild;
     EnemyControler targetObject;
     AttackType damage;
+    ExplosionObject explosion;
 
     private void Awake()
     {
        
-        box = GetComponent<Collider2D>();
+        box = GetComponent<BoxCollider2D>();
+        explosion = GetComponentInChildren<ExplosionObject>();
     }
    public void SetMissile(Collider2D target,float speed,Sprite sprite, AttackType damage)
     {
@@ -40,14 +42,17 @@ public class Missile : MonoBehaviour
         }
         poolChild.Turn();
 
+
     }
     void OnTriggerEnter2D(Collider2D collision)
     {
-       
-        if (collision.name.Equals(target.name))
-        {
 
+    
+        if (collision.Equals(target))
+        {
+            Debug.Log(name+"  "+collision.name);
             targetObject.Damage(damage.damage);
+            Explode();
             poolChild.Turn();
 
         }
@@ -55,13 +60,16 @@ public class Missile : MonoBehaviour
 
     private void OnDisable()
     {
-        target = null;
-        Explosion();
+       // target = null;
+    
 
     }
 
-    private void Explosion()
+    public void Explode()
     {
-     
+
+   
+
     }
+
 }

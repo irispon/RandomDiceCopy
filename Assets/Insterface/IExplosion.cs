@@ -5,6 +5,6 @@ using UnityEngine;
 public interface IExplosion
 {
 
-    void Explode(Collider2D warhead, AttackType type); 
+    void Explode(BoxCollider2D warhead, AttackType type); 
 
 }
