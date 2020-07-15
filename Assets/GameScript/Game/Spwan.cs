@@ -35,7 +35,8 @@ public class Spwan : MonoBehaviour
         {
             Enemy enemy = new Enemy();
             enemy.maxHp = Random.Range(60, 200);
-            enemy.speed = Random.Range(0.025f, 0.1f);
+            enemy.speed = 0.1f;
+           // Random.Range(0.025f, 0.1f)
             GameObject enemyObject = enemyObjectPool.GetChild();
  
             
@@ -43,7 +44,7 @@ public class Spwan : MonoBehaviour
             enemyObject.transform.localPosition= board.FirstVertex();
             enemyObject.transform.localScale = new Vector3(1, 1, 1);
 
-            enemyObject.GetComponent<EnemyControler>().SetEnemy(enemy,destinations);
+            enemyObject.GetComponent<EnemyControler>().SetEnemy(enemy,destinations,board.FirstVertex());
             yield return new WaitForSeconds(Random.Range(spwanTime.x, spwanTime.y));
         }
 

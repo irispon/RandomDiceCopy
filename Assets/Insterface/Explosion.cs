@@ -10,6 +10,11 @@ public abstract class Explosion :IExplosion
     {
         return Physics2D.OverlapBoxAll(transform.position, new Vector2(attackType.range, attackType.range), 360, LayerMaskUtill.Single("Monster"));
     }
+    protected Collider2D GetTarget(Transform transform)
+    {
+        return Physics2D.OverlapBox(transform.position, new Vector2(1, 1), 360, LayerMaskUtill.Single("Monster"));
+    }
+
     protected Collider2D[] GetTargets(Transform transform, AttackType attackType,string layer)
     {
         return Physics2D.OverlapBoxAll(transform.position, new Vector2(attackType.range, attackType.range), 360, LayerMaskUtill.Single(layer));

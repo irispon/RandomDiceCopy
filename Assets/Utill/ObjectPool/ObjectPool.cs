@@ -80,8 +80,8 @@ public class ObjectPool : MonoBehaviour
         else
         {
             obj = Instantiate(prefab.gameObject, objectPools.transform);
+            Debug.Log("생성");
         }
-
         obj.SetActive(true);
         activeObjects.Add(obj);
 

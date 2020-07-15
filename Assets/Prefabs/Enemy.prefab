@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6206023148774791462}
   - component: {fileID: 5032033518524249351}
   m_Layer: 5
-  m_Name: GameObject
+  m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -218,7 +218,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sortingLayerName: Unit
-  sortingOrder: 1
+  sortingOrder: 4
 --- !u!1 &9036007906872692027
 GameObject:
   m_ObjectHideFlags: 0
@@ -321,6 +321,8 @@ MonoBehaviour:
     speed: 0
     sprite: {fileID: 21300000, guid: b2312758fc898f4469e6cd81dc4302ab, type: 3}
   text: {fileID: 6206023148774791462}
+  crowdControl: {fileID: 2108633309421865737, guid: 90baa8646bcc521459c1aaf13c8e42fd,
+    type: 3}
 --- !u!114 &278109904174700434
 MonoBehaviour:
   m_ObjectHideFlags: 0

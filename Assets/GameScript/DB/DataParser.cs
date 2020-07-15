@@ -37,6 +37,12 @@ public class DataParser
                 diceStatus.attackType.diffusion = dataReader.GetFloat(7);
                 diceStatus.attackType.range = dataReader.GetInt32(8);
                 diceStatus.describe = dataReader.GetString(9);
+                if(!dataReader.IsDBNull(10))
+                {
+                    Debug.Log("이미지 로딩");
+                    diceStatus.attackType.effect = SpriteLoader.LoadNewSprite(dataReader.GetString(10));
+                }
+            
 
                 DiceCache.GetInstance().diceCache.Add(diceStatus.diceName, diceStatus);
             }

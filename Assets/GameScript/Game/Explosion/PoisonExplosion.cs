@@ -11,18 +11,29 @@ public class PoisonExplosion : Explosion
     {
         EnemyControler controler;
        
-        Collider2D[] targetsInViewRadius = GetTargets(box.transform, attackType);
-        foreach (Collider2D target in targetsInViewRadius)
-        {
+        Collider2D target = GetTarget(box.transform);
             try
             {
                 controler = target.GetComponent<EnemyControler>();
-                controler.Damage(attackType.damage * attackType.diffusion);
-               // Debug.Log("피해 대상"+target.name+ "   "+"폭발 피해"+ attackType.damage * attackType.diffusion);
+            if (attackType.effect != null&&controler.isActiveAndEnabled)
+            {
+            
+                 
+                controler.SideEffect(attackType.range,attackType , (controller) => {
+
+                    controler.Damage(attackType.diffusion * attackType.damage);
+                 
+                 });
+
+    
+
             }
+
+            // Debug.Log("피해 대상"+target.name+ "   "+"폭발 피해"+ attackType.damage * attackType.diffusion);
+        }
             catch (Exception e)
             {
-
+               // Debug.Log("오류"+box.name);
             }
 
         }
@@ -31,4 +42,4 @@ public class PoisonExplosion : Explosion
 
 
 
-}
+

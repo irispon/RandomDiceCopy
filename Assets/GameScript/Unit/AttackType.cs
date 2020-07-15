@@ -14,7 +14,7 @@ public struct AttackType
     public float diffusion;
     public int range;
     public string introduction;
-
+    public Sprite effect;
 
 }
 

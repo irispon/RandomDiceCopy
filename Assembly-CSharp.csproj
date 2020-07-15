@@ -68,8 +68,12 @@
     <Compile Include="Assets\GameScript\DB\DiceCache.cs" />
     <Compile Include="Assets\GameScript\DB\ExplosionCache.cs" />
     <Compile Include="Assets\GameScript\Game\BoardMaster.cs" />
+    <Compile Include="Assets\GameScript\Game\CrowdControl.cs" />
     <Compile Include="Assets\GameScript\Game\DiceSlotPuncher.cs" />
+    <Compile Include="Assets\GameScript\Game\Explosion\ChainExplosion.cs" />
     <Compile Include="Assets\GameScript\Game\Explosion\ExplosionObject.cs" />
+    <Compile Include="Assets\GameScript\Game\Explosion\FireExplosion.cs" />
+    <Compile Include="Assets\GameScript\Game\Explosion\IceExplosion.cs" />
     <Compile Include="Assets\GameScript\Game\Explosion\PoisonExplosion.cs" />
     <Compile Include="Assets\GameScript\Game\Missile.cs" />
     <Compile Include="Assets\GameScript\Game\Spwan.cs" />
@@ -90,6 +94,7 @@
     <Compile Include="Assets\GameScript\Unit\MonsterStatus.cs" />
     <Compile Include="Assets\Insterface\Explosion.cs" />
     <Compile Include="Assets\Insterface\IExplosion.cs" />
+    <Compile Include="Assets\Utill\Action\CrowdControlEffect.cs" />
     <Compile Include="Assets\Utill\Adadter.cs" />
     <Compile Include="Assets\Utill\APathFind.cs" />
     <Compile Include="Assets\Utill\BoolParser.cs" />
