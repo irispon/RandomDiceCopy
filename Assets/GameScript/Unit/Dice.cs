@@ -30,7 +30,7 @@ public class Dice : MonoBehaviour, IDrag
         sprite = GetComponent<SpriteRenderer>();
         name = nameof(Dice);
         eyes = new List<DiceEye>();
-       
+   
 
 
     }

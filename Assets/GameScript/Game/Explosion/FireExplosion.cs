@@ -2,17 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FireExplosion : MonoBehaviour
+public class FireExplosion : Explosion
 {
-    // Start is called before the first frame update
-    void Start()
+    public override void Explode(BoxCollider2D box, AttackType attackType)
     {
-        
+        Collider2D[] enemies = GetTargets(box.transform, attackType);
+
+
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
 }
