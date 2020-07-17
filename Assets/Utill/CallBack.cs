@@ -5,7 +5,8 @@ using UnityEngine;
 
 public class CallBack : MonoBehaviour
 {
-    public static IEnumerator waitThenCallback(float time, Action callback)
+    public static IEnumerator WaitThenCallback
+        (float time, Action callback)
     {
         yield return new WaitForSeconds(time);
         callback();

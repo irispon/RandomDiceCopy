@@ -107,7 +107,7 @@ public class Dice : MonoBehaviour, IDrag
         }
 
        
-        StartCoroutine(CallBack.waitThenCallback(0, () => {
+        StartCoroutine(CallBack.WaitThenCallback(0, () => {
 
             foreach (DiceSlot otherDice in master.pullDiceSlots)
             {

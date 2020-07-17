@@ -62,6 +62,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\GameScript\AnimationTest.cs" />
     <Compile Include="Assets\GameScript\DB\DBLoader.cs" />
     <Compile Include="Assets\GameScript\DB\DataParser.cs" />
     <Compile Include="Assets\GameScript\DB\Deck.cs" />

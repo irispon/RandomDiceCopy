@@ -34,7 +34,7 @@ public class EnemyControler : MonoBehaviour
     {
 
 
-     Debug.Log("움직임 " + transform.localPosition +"  "+ targetPositon);
+   //  Debug.Log("움직임 " + transform.localPosition +"  "+ targetPositon);
       
 
         for (; Vector3.Distance(transform.localPosition,targetPositon)>0.005;)
@@ -42,11 +42,11 @@ public class EnemyControler : MonoBehaviour
          
             transform.localPosition = Vector3.MoveTowards(this.transform.localPosition, targetPositon, enemy.speed);
            // Debug.Log(name + transform.localPosition);
-            yield return null;
+            yield return new WaitForFixedUpdate();
            
         }
         transform.localPosition = targetPositon;
-        Debug.Log(transform.localPosition);
+        //Debug.Log(transform.localPosition);
         if (destinations.Count > 0)
         {
            
@@ -74,7 +74,7 @@ public class EnemyControler : MonoBehaviour
          
         }
         StopAllCoroutines();
-        Debug.Log("set"+name);
+        //Debug.Log("set"+name);
         transform.localPosition = positon;
         destinations = new Queue<Vector3>(paths);
        // sprite.sprite = enemy.sprite;
