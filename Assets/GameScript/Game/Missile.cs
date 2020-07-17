@@ -11,6 +11,7 @@ public class Missile : MonoBehaviour
     public AttackType attackType;
     ExplosionObject explosion;
     Animator animator;
+    bool hasAnimation;
     
     private void Awake()
     {
@@ -19,15 +20,25 @@ public class Missile : MonoBehaviour
         explosion = GetComponentInChildren<ExplosionObject>();
         animator = GetComponent<Animator>();
     }
-   public void SetMissile(Collider2D target,float speed,Sprite sprite, AttackType damage)
+   public void SetMissile(Collider2D target,float speed,Sprite sprite, AttackType damage,RuntimeAnimatorController controller =null)
     {
         GetComponent<SpriteRenderer>().sprite = sprite;
         this.target = target;
         targetObject = target.GetComponent<EnemyControler>();
         StartCoroutine(Shoot(target, speed));
         this.attackType = damage;
+        if(controller == null)
+        {
+            animator.runtimeAnimatorController = null;
+            hasAnimation = false;
+        }
+        else
+        {
+            animator.runtimeAnimatorController = controller;
+            hasAnimation = true;
+        }
      //   Debug.Log("탄 설정");
-     
+
     }
     public void Start()
     {
@@ -44,9 +55,17 @@ public class Missile : MonoBehaviour
             yield return new WaitForFixedUpdate();
 
         }
-   
+
         //    animator.SetBool("Explosion", true);
-        animator.SetTrigger("Explosion");
+        if (hasAnimation)
+        {
+            animator.SetTrigger("Explosion");
+        }
+        else
+        {
+            Turn();
+        }
+      
         yield return new WaitForFixedUpdate();
 
     }
@@ -59,7 +78,16 @@ public class Missile : MonoBehaviour
           //  Debug.Log(name+"  "+collision.name);
             targetObject.Damage(attackType.damage);
             explosion.Explode(attackType);
-            animator.SetTrigger("Explosion");
+            if (hasAnimation)
+            {
+                animator.SetTrigger("Explosion");
+
+            }
+            else
+            {
+                Turn();
+            }
+        
 
 
         }

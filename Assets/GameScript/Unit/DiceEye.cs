@@ -15,7 +15,7 @@ public class DiceEye : MonoBehaviour
     {
         sprite = GetComponent<SpriteRenderer>();
         missileObjectPool = ObjectPoolManager.GetInstance().Get(objectPoolKey);
-        Debug.Log(missileObjectPool == null);
+  //      Debug.Log(missileObjectPool == null);
         view = GetComponent<FieldOfView>();
         
 
@@ -48,7 +48,7 @@ public class DiceEye : MonoBehaviour
                     GameObject gameObject = missileObjectPool.GetChild();
                     Debug.Log(name+"."+gameObject.name);
                     gameObject.transform.position = this.transform.position;
-                    gameObject.GetComponent<Missile>().SetMissile(target, 30, sprite.sprite, dice.diceStatus.attackType);
+                    gameObject.GetComponent<Missile>().SetMissile(target, 20, sprite.sprite, dice.diceStatus.attackType,dice.diceStatus.animator);
                    
                 }
                 else

@@ -12,7 +12,7 @@ public class DiceStatus :IObjectInfo
     public string describe;
     public Sprite sprite;
     public Sprite dotSprite;
-    public Animator animator;
+    public RuntimeAnimatorController animator;
     
 
     public string GetName()
