@@ -14,7 +14,7 @@ public class ObjectPool : MonoBehaviour
     public Queue<GameObject> deActiveObjects { get; private set; }
     GameObject objectPools;
     string poolName;
-
+    private object lockObject = new object();
 
     public void Awake()
     {
@@ -71,8 +71,11 @@ public class ObjectPool : MonoBehaviour
 
     public GameObject GetChild()
     {
-        GameObject obj;
+    
+        lock (lockObject)
+        {
 
+            GameObject obj;
         if (deActiveObjects.Count > 0)
         {
             obj = deActiveObjects.Dequeue();
@@ -82,18 +85,30 @@ public class ObjectPool : MonoBehaviour
             obj = Instantiate(prefab.gameObject, objectPools.transform);
             Debug.Log("생성");
         }
+
+
+        
         obj.SetActive(true);
-        activeObjects.Add(obj);
+         activeObjects.Add(obj);
+
+
+
 
         return obj;
+        }
     }
     public void TurnChild(PoolChild child)
     {
-
+      
         child.gameObject.SetActive(false);
         child.transform.SetParent(objectPools.transform);
-        deActiveObjects.Enqueue(child.gameObject);
-        activeObjects.Remove(child.gameObject);
+       if(!deActiveObjects.Contains(child.gameObject))
+        {
+            deActiveObjects.Enqueue(child.gameObject);
+            activeObjects.Remove(child.gameObject);
+        }
+
+     
     }
 
     public void Clear()

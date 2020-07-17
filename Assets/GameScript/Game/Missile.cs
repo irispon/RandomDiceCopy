@@ -26,7 +26,7 @@ public class Missile : MonoBehaviour
         targetObject = target.GetComponent<EnemyControler>();
         StartCoroutine(Shoot(target, speed));
         this.attackType = damage;
-
+     //   Debug.Log("탄 설정");
      
     }
     public void Start()
@@ -38,16 +38,16 @@ public class Missile : MonoBehaviour
         while (target.isActiveAndEnabled)
         {
             
-                transform.position = Vector3.MoveTowards(transform.position, target.transform.position, speed);
+                transform.position = Vector3.MoveTowards(transform.position, target.transform.position, speed* Time.deltaTime);
           
        
             yield return new WaitForFixedUpdate();
 
         }
-        poolChild.Turn();
+   
         //    animator.SetBool("Explosion", true);
-
-
+        animator.SetTrigger("Explosion");
+        yield return new WaitForFixedUpdate();
 
     }
     void OnTriggerEnter2D(Collider2D collision)
@@ -59,18 +59,19 @@ public class Missile : MonoBehaviour
           //  Debug.Log(name+"  "+collision.name);
             targetObject.Damage(attackType.damage);
             explosion.Explode(attackType);
-        //    animator.SetBool("Explosion", true);
-            poolChild.Turn();
+            animator.SetTrigger("Explosion");
+
 
         }
     }
 
     public void Turn()
     {
-   //     animator.SetBool("Explosion", false);
+        //     animator.SetBool("Explosion", false);
+    //    Debug.Log("턴" + name);
         poolChild.Turn();
         //Debug.Log("Turn");
-    
+
     }
     private void OnDisable()
     {

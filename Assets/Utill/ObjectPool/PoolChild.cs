@@ -10,6 +10,7 @@ public class PoolChild : MonoBehaviour
 
     public void Turn()
     {
+      
         objectPool.TurnChild(this);
     }
     public void SetObjectPool(ObjectPool objectPool)

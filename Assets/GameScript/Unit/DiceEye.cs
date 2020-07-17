@@ -46,8 +46,9 @@ public class DiceEye : MonoBehaviour
                 if (target.isActiveAndEnabled)
                 {
                     GameObject gameObject = missileObjectPool.GetChild();
+                    Debug.Log(name+"."+gameObject.name);
                     gameObject.transform.position = this.transform.position;
-                    gameObject.GetComponent<Missile>().SetMissile(target, 0.5f, sprite.sprite, dice.diceStatus.attackType);
+                    gameObject.GetComponent<Missile>().SetMissile(target, 30, sprite.sprite, dice.diceStatus.attackType);
                    
                 }
                 else
