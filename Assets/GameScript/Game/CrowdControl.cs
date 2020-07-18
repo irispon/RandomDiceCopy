@@ -11,7 +11,7 @@ public class CrowdControl : MonoBehaviour
    private AttackType type;
    IEnumerator crowd;
 
-    public void SetCrowdControl(float time, Sprite sprite, CrowdControlEffect effect)//나중에 Effect라는 란을 따로 만들자
+    public void SetCrowdControl(float time, Sprite sprite, CrowdControlEffect effect, FollowUpEffect followUpEffect = null)//나중에 Effect라는 란을 따로 만들자
     {
 
         if(crowd != null)
@@ -23,20 +23,22 @@ public class CrowdControl : MonoBehaviour
 
 
         this.spriteRenderer.sprite = sprite;
-        crowd = Control(time, effect);
+        crowd = Control(time, effect, followUpEffect);
         StartCoroutine(crowd);
         
 
     }
 
-    public IEnumerator Control(float time, CrowdControlEffect effect)
+    public IEnumerator Control(float time, CrowdControlEffect effect, FollowUpEffect followUpEffect = null)
     {
-        for (float i = 0; i < time; i += Time.deltaTime)
+        for (float i = 0; i < time; i += 0.25f)
         {
             effect(controler);
-
+            Debug.Log("시간"+ i + "  "+ time);
             yield return new WaitForSeconds(0.25f);
         }
+        followUpEffect?.Invoke(controler);
+        Debug.Log("복구");
         spriteRenderer.sprite = null;
         crowd = null;
     }

@@ -58,6 +58,12 @@ public class DataParser
                     Debug.Log("이미지 로딩");
                     diceStatus.attackType.effect = SpriteLoader.LoadNewSprite(dataReader.GetString(10));
                 }
+
+                if (!dataReader.IsDBNull(11))
+                {
+                    diceStatus.attackType.animationEffect = Resources.Load<RuntimeAnimatorController>(dataReader.GetString(11));
+
+                }
             
 
                 DiceCache.GetInstance().diceCache.Add(diceStatus.diceName, diceStatus);

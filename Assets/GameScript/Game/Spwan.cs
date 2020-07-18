@@ -35,7 +35,7 @@ public class Spwan : MonoBehaviour
         {
             Enemy enemy = new Enemy();
             enemy.maxHp = Random.Range(60, 200);
-            enemy.speed = 0.1f;
+            enemy.speed = 5f;
            // Random.Range(0.025f, 0.1f)
             GameObject enemyObject = enemyObjectPool.GetChild();
  

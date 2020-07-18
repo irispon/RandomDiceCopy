@@ -10,4 +10,14 @@ public class Enemy
     public float speed;
     public Sprite sprite;
 
+    public Enemy Clone()
+    {
+
+        return (Enemy)MemberwiseClone();
+    }
+
+}
+public enum EnemyStat
+{
+    speed
 }

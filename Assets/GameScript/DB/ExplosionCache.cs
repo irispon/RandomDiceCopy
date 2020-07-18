@@ -31,7 +31,7 @@ public class ExplosionCache : SingletonObject<ExplosionCache>
                     explosion = new PoisonExplosion();
                     break;
                 case OfensiveType.Debuff:
-                    explosion = new PoisonExplosion();
+                    explosion = new IceExplosion();
                     break;
                 case OfensiveType.Direct:
                     explosion = new PoisonExplosion();

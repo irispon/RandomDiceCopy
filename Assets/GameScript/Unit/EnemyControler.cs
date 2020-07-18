@@ -10,6 +10,7 @@ public class EnemyControler : MonoBehaviour
     SpriteRenderer sprite;
     [SerializeField]
     Enemy enemy;
+    Enemy enemyTmp;
     PoolChild child;
     [SerializeField]
     TextMeshPro text;
@@ -24,7 +25,7 @@ public class EnemyControler : MonoBehaviour
         sprite = GetComponent<SpriteRenderer>();
         transform.localScale = new Vector3(1,1,1);
         crowdControls = new Dictionary<OfensiveType, CrowdControl>();
-
+        enemyTmp = enemy;
 
     }
    
@@ -40,7 +41,7 @@ public class EnemyControler : MonoBehaviour
         for (; Vector3.Distance(transform.localPosition,targetPositon)>0.005;)
         {
          
-            transform.localPosition = Vector3.MoveTowards(this.transform.localPosition, targetPositon, enemy.speed);
+            transform.localPosition = Vector3.MoveTowards(this.transform.localPosition, targetPositon, enemy.speed*Time.deltaTime);
            // Debug.Log(name + transform.localPosition);
             yield return new WaitForFixedUpdate();
            
@@ -67,6 +68,8 @@ public class EnemyControler : MonoBehaviour
 
     public void SetEnemy(Enemy enemy,Queue<Vector3> paths,Vector3 positon)
     {
+        enemyTmp = enemy.Clone();
+
         if (destinations != null)
         {
 
@@ -97,6 +100,42 @@ public class EnemyControler : MonoBehaviour
             Turn();
         }
     }
+    public void Debuff(float coefficient,float time ,EnemyStat stat)
+    {
+        time = time * 4;
+        switch (stat)
+        {
+            case EnemyStat.speed:
+                
+                float speed = enemy.speed* coefficient /time;
+                if (speed > enemyTmp.speed * 0.4f)
+                {
+                    enemy.speed = speed;
+                   // Debug.Log("속도" + speed +"  "+ enemyTmp.speed * 0.4f);
+                }
+                else
+                {
+                    enemy.speed = enemyTmp.speed * 0.4f;
+                  //  Debug.Log("속도" + enemy.speed + "  " + enemyTmp.speed * 0.4f);
+                }
+                break;
+        }
+
+
+    }
+
+    public void Recover(EnemyStat stat)
+    {
+        switch (stat)
+        {
+            case EnemyStat.speed:
+                enemy.speed = enemyTmp.speed;
+                Debug.Log("복구"+enemy.speed+"   "+ enemyTmp.speed);
+                break;
+        }
+
+
+    }
     private void Turn()
     {
         destinations.Clear();
@@ -110,7 +149,7 @@ public class EnemyControler : MonoBehaviour
 
     }
 
-    public void SideEffect(float time,AttackType type,CrowdControlEffect effect)
+    public void SideEffect(float time,AttackType type,CrowdControlEffect effect, FollowUpEffect followUpEffect =null)
     {
 
 
@@ -122,7 +161,7 @@ public class EnemyControler : MonoBehaviour
             crowdControls.Add(type.ofensiveType, crowd.GetComponent<CrowdControl>());
             crowdControls[type.ofensiveType].controler = this;
         }
-        crowdControls[type.ofensiveType].SetCrowdControl(time, type.effect, effect);
+        crowdControls[type.ofensiveType].SetCrowdControl(time, type.effect, effect,followUpEffect);
         //   subSprites[0].sprite = sprite;
         //   IEnumerator coroutine =CrowdControl(time, effect);
 
