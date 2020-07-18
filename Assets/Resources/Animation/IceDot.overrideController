@@ -1,0 +1,15 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: IceDot
+  m_Controller: {fileID: 9100000, guid: 2f83583dfc6601f47a7181f196311c5e, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: e2636e7b36e41664287c9556be96a61e, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: c9dbf2ab257fc7040b94e8998e89e9da, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 4f74091e2e341da46a63ee8254558f07, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: e343db44e4d5d604c85a2b83564c8167, type: 2}
