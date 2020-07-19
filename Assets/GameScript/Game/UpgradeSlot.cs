@@ -42,6 +42,8 @@ public class UpgradeSlot : MonoBehaviour
         Debug.Log("강화:"+ diceStatus.diceName + "강화도:"+diceStatus.reinforce);
         manager.texts[0].text = stringBuilder.Append("").Append((diceStatus.reinforce + 1)).Append("Lv").ToString();
         manager.texts[1].text = diceStatus.reinforceCost.ToString();
+        diceStatus.attackType.damage += diceStatus.reinforce * diceStatus.attackType.potential;
+        Debug.Log("데미지 증가:" + diceStatus.diceName + "데미지:" + diceStatus.attackType.damage);
         stringBuilder.Clear();
     }
 }

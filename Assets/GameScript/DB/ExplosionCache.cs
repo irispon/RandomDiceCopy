@@ -37,7 +37,7 @@ public class ExplosionCache : SingletonObject<ExplosionCache>
                     explosion = new PoisonExplosion();
                     break;
                 case OfensiveType.Explosion:
-                    explosion = new PoisonExplosion();
+                    explosion = new FireExplosion();
                     break;
                 case OfensiveType.Poison:
                     explosion = new PoisonExplosion();
@@ -49,4 +49,6 @@ public class ExplosionCache : SingletonObject<ExplosionCache>
 
         return explosion;
     }
+
+
 }

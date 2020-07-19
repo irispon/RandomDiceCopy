@@ -34,7 +34,7 @@ public class CrowdControl : MonoBehaviour
         for (float i = 0; i < time; i += 0.25f)
         {
             effect(controler);
-            Debug.Log("시간"+ i + "  "+ time);
+           // Debug.Log("시간"+ i + "  "+ time);
             yield return new WaitForSeconds(0.25f);
         }
         followUpEffect?.Invoke(controler);

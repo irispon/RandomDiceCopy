@@ -12,7 +12,7 @@ public class Missile : MonoBehaviour
     ExplosionObject explosion;
     Animator animator;
     bool hasAnimation;
-    
+    DiceStatus diceStatus;
     private void Awake()
     {
        
@@ -20,26 +20,29 @@ public class Missile : MonoBehaviour
         explosion = GetComponentInChildren<ExplosionObject>();
         animator = GetComponent<Animator>();
     }
-   public void SetMissile(Collider2D target,float speed,Sprite sprite, AttackType damage,RuntimeAnimatorController controller =null)
+    public void SetMissile(Collider2D target, float speed, Sprite sprite,DiceStatus diceStatus)
     {
+        this.diceStatus = diceStatus;
         GetComponent<SpriteRenderer>().sprite = sprite;
         this.target = target;
         targetObject = target.GetComponent<EnemyControler>();
         StartCoroutine(Shoot(target, speed));
-        this.attackType = damage;
-        if(controller == null)
+        this.attackType = diceStatus.attackType;
+        explosion.SetExplode(attackType);
+        if (diceStatus.animator == null)
         {
             animator.runtimeAnimatorController = null;
             hasAnimation = false;
         }
         else
         {
-            animator.runtimeAnimatorController = controller;
+            animator.runtimeAnimatorController = diceStatus.animator;
             hasAnimation = true;
         }
-     //   Debug.Log("탄 설정");
-
+        //   Debug.Log("탄 설정");
     }
+
+
     public void Start()
     {
         poolChild = GetComponent<PoolChild>();
@@ -75,20 +78,24 @@ public class Missile : MonoBehaviour
     
         if (collision.Equals(target))
         {
+            //float damage = attackType.damage + attackType.potential* diceStatus.reinforce;
           //  Debug.Log(name+"  "+collision.name);
             targetObject.Damage(attackType.damage);
             explosion.Explode(attackType);
+
+
             if (hasAnimation)
             {
+            
                 animator.SetTrigger("Explosion");
 
             }
-            else
+            else if(attackType.animationEffect==null)
             {
                 Turn();
             }
-        
 
+            
 
         }
     }
@@ -96,7 +103,8 @@ public class Missile : MonoBehaviour
     public void Turn()
     {
         //     animator.SetBool("Explosion", false);
-    //    Debug.Log("턴" + name);
+        //    Debug.Log("턴" + name);
+        explosion.Turn();
         poolChild.Turn();
         //Debug.Log("Turn");
 

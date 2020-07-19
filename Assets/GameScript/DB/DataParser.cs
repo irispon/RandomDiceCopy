@@ -64,8 +64,8 @@ public class DataParser
                     diceStatus.attackType.animationEffect = Resources.Load<RuntimeAnimatorController>(dataReader.GetString(11));
 
                 }
-            
-
+                // 12번은 디버프 적용 부위 설정임.
+                diceStatus.attackType.potential = dataReader.GetFloat(13);
                 DiceCache.GetInstance().diceCache.Add(diceStatus.diceName, diceStatus);
             }
             catch (Exception e)
@@ -124,7 +124,7 @@ public class DataParser
             {
                 Debug.Log("덱 확인" + dataReader.GetString(i));
                 DiceStatus diceStatus = cache.diceCache[dataReader.GetString(i)];
-                dices.Add(diceStatus);
+                dices.Add(diceStatus);ㄷ
        
             }
 
@@ -134,3 +134,4 @@ public class DataParser
 
     }
 }
+ㄴ

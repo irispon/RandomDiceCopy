@@ -21,4 +21,8 @@ public abstract class Explosion :IExplosion
     }
     public abstract void Explode(BoxCollider2D box,AttackType attackType);
 
+    public virtual void Turn()
+    {
+       
+    }
 }

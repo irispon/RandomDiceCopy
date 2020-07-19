@@ -7,11 +7,12 @@ public class DiceStatus :IObjectInfo
 {
     public AttackType attackType;
     public string diceName;
-    public int reinforce=0;
+    public int reinforce=1;
     public int reinforceCost;
     public string describe;
     public Sprite sprite;
     public Sprite dotSprite;
+   
     public RuntimeAnimatorController animator;
     
 
