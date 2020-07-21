@@ -38,7 +38,7 @@ public class CrowdControl : MonoBehaviour
             yield return new WaitForSeconds(0.25f);
         }
         followUpEffect?.Invoke(controler);
-        Debug.Log("복구");
+        //Debug.Log("복구");
         spriteRenderer.sprite = null;
         crowd = null;
     }

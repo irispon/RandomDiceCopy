@@ -151,6 +151,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   serverPath: D:\UnityProject\CopyDefense
+  isApp: 1
 --- !u!4 &1125069847
 Transform:
   m_ObjectHideFlags: 0

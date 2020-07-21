@@ -6,6 +6,7 @@ using System.Data;
 using System.IO;
 using System.Text;
 using UnityEngine;
+using UnityEngine.Networking;
 
 public class DBManager :SingletonObject<DBManager>
 {
@@ -16,7 +17,9 @@ public class DBManager :SingletonObject<DBManager>
 
     private string URI = "URI=file:";
     [SerializeField]
-    private string serverPath;//서버가 있다 가정
+    private string serverPath;
+    [SerializeField]
+    bool isApp;
     public StringBuilder stringBuilder;
     private bool check= false;
 
@@ -25,9 +28,50 @@ public class DBManager :SingletonObject<DBManager>
     public override void Init()
     {
 
+
+
        stringBuilder = new StringBuilder();
        Debug.Log("DB 초기화");
-       serverPath = stringBuilder.Append(serverPath).Append("/").Append(dbName).Append(".db").ToString();
+
+        string filepath = string.Empty;
+        if(Application.platform == RuntimePlatform.Android)
+        {
+            stringBuilder.Clear();
+            filepath = stringBuilder.Append(Application.persistentDataPath).Append("/RandomDice.db").ToString();
+            Debug.Log("어플리케이션"+filepath);
+
+            stringBuilder.Clear();
+            if (!File.Exists(filepath))
+            {
+                Debug.Log("DB존재X");
+                Debug.Log(stringBuilder.ToString());
+                UnityWebRequest unityWebRequest = UnityWebRequest.Get(stringBuilder.Append("jar:file://").Append(Application.dataPath).Append("!/assets/RandomDice.db").ToString());
+                Debug.Log(unityWebRequest.downloadedBytes.ToString());
+                while (unityWebRequest.SendWebRequest().isDone) ;
+                File.WriteAllBytes(filepath, unityWebRequest.downloadHandler.data);
+
+            }
+        }
+        else
+        {
+            Debug.Log("PC 플랫폼");
+            filepath = Application.dataPath + "/RandomDice.db";
+            if (!File.Exists(filepath))
+            {
+                Debug.Log(filepath);
+                File.Copy(Application.streamingAssetsPath + "/RandomDice.db", filepath);
+                
+            }
+        }
+
+
+        serverPath = filepath;
+
+
+        
+     //  serverPath = stringBuilder.Append(serverPath).Append("/").Append(dbName).Append(".db").ToString();
+
+      
        Debug.Log(serverPath);
         
 
@@ -42,6 +86,12 @@ public class DBManager :SingletonObject<DBManager>
 
       
       
+    }
+
+    void AppInit()
+    {
+ 
+
     }
     /*
      public void Create()

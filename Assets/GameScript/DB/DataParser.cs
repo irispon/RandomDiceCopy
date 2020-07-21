@@ -124,7 +124,7 @@ public class DataParser
             {
                 Debug.Log("덱 확인" + dataReader.GetString(i));
                 DiceStatus diceStatus = cache.diceCache[dataReader.GetString(i)];
-                dices.Add(diceStatus);ㄷ
+                dices.Add(diceStatus);
        
             }
 
@@ -134,4 +134,3 @@ public class DataParser
 
     }
 }
-ㄴ
