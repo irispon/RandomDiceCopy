@@ -27,8 +27,33 @@ public class DataParser
               
                 diceStatus.diceName = dataReader.GetString(0);
                 //diceStatus.diceEye = 1;
-                diceStatus.sprite = SpriteLoader.LoadNewSprite(dataReader.GetString(1));
-                diceStatus.dotSprite = SpriteLoader.LoadNewSprite(dataReader.GetString(1).Replace("Dice.png", "Dot.png"));
+
+                if (Application.platform==RuntimePlatform.Android)
+                {
+                    string spritePath = string.Empty;
+                    spritePath = dataReader.GetString(1);
+                    spritePath = spritePath.Replace("./Assets/Resources/","").Replace(".png","");
+                    Debug.Log("안드로이드 리소스 로딩");
+                    Debug.Log(spritePath);
+                    diceStatus.sprite = Resources.Load<Sprite>(spritePath);
+                    diceStatus.dotSprite = Resources.Load<Sprite>(spritePath.Replace("Dice", "Dot"));
+                    if (!dataReader.IsDBNull(10))
+                    {
+              
+                        diceStatus.attackType.effect = Resources.Load<Sprite>(dataReader.GetString(10).Replace("./Assets/Resources/", ""));
+                    }
+                }
+                else
+                {
+                    diceStatus.sprite = SpriteLoader.LoadNewSprite(dataReader.GetString(1));
+                    diceStatus.dotSprite = SpriteLoader.LoadNewSprite(dataReader.GetString(1).Replace("Dice.png", "Dot.png"));
+                    if (!dataReader.IsDBNull(10))
+                    {
+                        Debug.Log("이미지 로딩");
+                        diceStatus.attackType.effect = SpriteLoader.LoadNewSprite(dataReader.GetString(10));
+                    }
+                }
+
                 diceStatus.attackType.ofensiveType = EnumUtills.Parse<OfensiveType>(dataReader.GetString(2));
                 diceStatus.attackType.damageType = EnumUtills.Parse<DamageType>(dataReader.GetString(3));
                 diceStatus.attackType.target = EnumUtills.Parse<Target>(dataReader.GetString(4));
@@ -53,11 +78,7 @@ public class DataParser
                 {
                     Debug.Log(e);
                 }
-                if (!dataReader.IsDBNull(10))
-                {
-                    Debug.Log("이미지 로딩");
-                    diceStatus.attackType.effect = SpriteLoader.LoadNewSprite(dataReader.GetString(10));
-                }
+
 
                 if (!dataReader.IsDBNull(11))
                 {
