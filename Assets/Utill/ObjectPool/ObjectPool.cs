@@ -19,6 +19,7 @@ public class ObjectPool : MonoBehaviour
     public void Awake()
     {
       poolName = prefab.name + "Pool";
+      Debug.Log("풀 초기화"+poolName);
       ObjectPoolManager.GetInstance().Join(poolName, this);
       Init();
 

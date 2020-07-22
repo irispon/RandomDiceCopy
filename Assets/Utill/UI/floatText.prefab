@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 5219212836540860397}
   - component: {fileID: 2184522837288128782}
   m_Layer: 0
-  m_Name: floatText
+  m_Name: FloatText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -40,8 +40,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.98, y: 5.63}
-  m_SizeDelta: {x: 20, y: 5}
+  m_AnchoredPosition: {x: -0.13, y: -0.04}
+  m_SizeDelta: {x: 3.2283936, y: 1.2439575}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!23 &5219212836540860394
 MeshRenderer:
@@ -222,7 +222,7 @@ MonoBehaviour:
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 10.589201, y: 2.2289171, z: 8.623142, w: 2.423615}
+  m_margin: {x: 0.01818657, y: 1.2306871, z: -0.00017929077, w: 1.2510686}
   m_textInfo:
     textComponent: {fileID: 5219212836540860392}
     characterCount: 3
@@ -273,4 +273,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94639d40e2a7c6046a32124886c723fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 0

@@ -326,8 +326,7 @@ MonoBehaviour:
   text: {fileID: 6206023148774791462}
   crowdControl: {fileID: 2108633309421865737, guid: 90baa8646bcc521459c1aaf13c8e42fd,
     type: 3}
-  DamageIndcator: {fileID: 8815468591434283497, guid: dd15cde4199eeb94d8a03c3fa6087863,
-    type: 3}
+  damageIndcatorsKey: FloatTextPool
 --- !u!114 &278109904174700434
 MonoBehaviour:
   m_ObjectHideFlags: 0

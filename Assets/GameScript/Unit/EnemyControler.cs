@@ -17,7 +17,8 @@ public class EnemyControler : MonoBehaviour
     [SerializeField]
     GameObject crowdControl;
     [SerializeField]
-    GameObject DamageIndcator;
+    string damageIndcatorsKey;
+    ObjectPool damageIndecator;
 
     public Dictionary<OfensiveType, CrowdControl> crowdControls;
     Queue<Vector3> destinations;
@@ -29,9 +30,19 @@ public class EnemyControler : MonoBehaviour
         crowdControls = new Dictionary<OfensiveType, CrowdControl>();
         enemyTmp = enemy;
 
-    }
-   
 
+    }
+    void Start()
+    {
+
+        child = GetComponent<PoolChild>();
+        if (!damageIndcatorsKey.Equals(""))
+        {
+            damageIndecator = ObjectPoolManager.GetInstance().Get(damageIndcatorsKey);
+
+        }
+
+    }
 
     public IEnumerator MoveTo(Vector3 targetPositon)
     {
@@ -95,9 +106,24 @@ public class EnemyControler : MonoBehaviour
 
     public void Damage(float damage)
     {
+        Damage(damage, Color.black);
+    }
+
+    public void Damage(float damage,Color color)
+    {
         enemy.hp -= (int)damage;
         text.text = enemy.hp.ToString();
-        if (enemy.hp <=0)
+        if (damageIndecator != null)
+        {
+            FloatText floatText = damageIndecator.GetChild().GetComponent<FloatText>();
+            // Debug.Log(floatText.name+"  " + floatText.isActiveAndEnabled);
+            floatText.transform.position = transform.position;
+            floatText.GetDamage((int)damage);
+
+        }
+
+
+        if (enemy.hp <= 0)
         {
             Turn();
         }
@@ -143,13 +169,7 @@ public class EnemyControler : MonoBehaviour
         destinations.Clear();
         child.Turn();
     }
-    void Start()
-    {
 
-        child = GetComponent<PoolChild>();
-
-
-    }
 
     public void SideEffect(float time,AttackType type,CrowdControlEffect effect, FollowUpEffect followUpEffect =null)
     {
