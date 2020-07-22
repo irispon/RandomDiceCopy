@@ -40,7 +40,7 @@ public class DataParser
                     if (!dataReader.IsDBNull(10))
                     {
               
-                        diceStatus.attackType.effect = Resources.Load<Sprite>(dataReader.GetString(10).Replace("./Assets/Resources/", ""));
+                        diceStatus.attackType.effect = Resources.Load<Sprite>(dataReader.GetString(10).Replace("./Assets/Resources/", "").Replace(".png",""));
                     }
                 }
                 else

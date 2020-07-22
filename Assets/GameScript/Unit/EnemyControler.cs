@@ -16,6 +16,8 @@ public class EnemyControler : MonoBehaviour
     TextMeshPro text;
     [SerializeField]
     GameObject crowdControl;
+    [SerializeField]
+    GameObject DamageIndcator;
 
     public Dictionary<OfensiveType, CrowdControl> crowdControls;
     Queue<Vector3> destinations;
