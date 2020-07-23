@@ -23,18 +23,20 @@ public class EnemyControler : MonoBehaviour
     public Dictionary<OfensiveType, CrowdControl> crowdControls;
     Queue<Vector3> destinations;
 
+    GameMaster master;
+
     private void Awake()
     {
         sprite = GetComponent<SpriteRenderer>();
         transform.localScale = new Vector3(1,1,1);
         crowdControls = new Dictionary<OfensiveType, CrowdControl>();
         enemyTmp = enemy;
-
+    
 
     }
     void Start()
     {
-
+        master = GameObject.Find("UserBoard").GetComponent<GameMaster>();
         child = GetComponent<PoolChild>();
         if (!damageIndcatorsKey.Equals(""))
         {
@@ -166,8 +168,10 @@ public class EnemyControler : MonoBehaviour
     }
     private void Turn()
     {
+        master.AddMoeny(100);
         destinations.Clear();
         child.Turn();
+
     }
 
 
@@ -198,11 +202,14 @@ public class EnemyControler : MonoBehaviour
 
     private void OnDisable()
     {
-        if(destinations != null)
+       
+        if (destinations != null)
         {
             destinations.Clear();
         }
    
      
     }
+
+  
 }

@@ -23,6 +23,7 @@ public class GameMaster:MonoBehaviour
     private int throwCostIncrease;
     private int reinForceCostIncrease;
     private List<DiceStatus> deck;
+    
 
     // Update is called once per frame
 
@@ -120,6 +121,12 @@ public class GameMaster:MonoBehaviour
     void ChangeGUI()
     {
         costText.text = cost.ToString();
+        playerMoneyText.text = playerMoney.ToString();
+    }
+
+    public void AddMoeny(int money)
+    {
+        playerMoney += money;
         playerMoneyText.text = playerMoney.ToString();
     }
 }

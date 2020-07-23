@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class Spwan : MonoBehaviour
 {
     [SerializeField]
@@ -9,13 +10,18 @@ public class Spwan : MonoBehaviour
     [SerializeField]
     BoardMaster board;
     [SerializeField]
-    Vector2 spwanTime;
-   
+    Vector2 spwanTime, enemyHp, enemySpeed;
+    bool boss = false;
 
     Queue<Vector3> destinations; 
     PoolChild child;
+    /// <summary>
+    /// 적 스텟 범위
+    /// </summary>
+
 
     
+
     public void Start()
     {
         child = GetComponent<PoolChild>();
@@ -23,6 +29,9 @@ public class Spwan : MonoBehaviour
         destinations.Enqueue(board.SecondVertex());
         destinations.Enqueue(board.ThirdVertex());
         destinations.Enqueue(board.FourthVertex());
+        StageManager.GetInstance().Join(this);
+        enemyHp = new Vector2(60, 200);
+        enemySpeed = new Vector2(3f, 5f);
         StartCoroutine(SpwanMonster());
 
 
@@ -31,11 +40,14 @@ public class Spwan : MonoBehaviour
 
     public IEnumerator SpwanMonster()
     {
-        while (true)
+        Debug.Log("start spwan"+boss);
+        while (!boss)
         {
+          //  Debug.Log("spwan");
             Enemy enemy = new Enemy();
-            enemy.maxHp = Random.Range(60, 200);
-            enemy.speed = 5f;
+            enemy.maxHp = (int)Random.Range(enemyHp.x, enemyHp.y);
+            enemy.speed = Random.Range(enemySpeed.x, enemySpeed.y);
+            enemy.speed =(float)System.Math.Truncate(enemy.speed * 10 / 10);
            // Random.Range(0.025f, 0.1f)
             GameObject enemyObject = enemyObjectPool.GetChild();
  
@@ -49,6 +61,18 @@ public class Spwan : MonoBehaviour
         }
 
 
+    }
+
+    public void SetEnemy(int level)
+    {
+        enemyHp += new Vector2(10 * level, 20 * level);
+        enemySpeed += new Vector2(0, 0.05f * level);
+    
+    }
+    public void SpwanBoss()
+    {
+        Debug.Log("보스 생성");
+        boss = true;
     }
 
 

@@ -84,6 +84,7 @@ public class ObjectPool : MonoBehaviour
         else
         {
             obj = Instantiate(prefab.gameObject, objectPools.transform);
+            obj.GetComponent<PoolChild>().SetObjectPool(this);
             Debug.Log("생성");
         }
 
