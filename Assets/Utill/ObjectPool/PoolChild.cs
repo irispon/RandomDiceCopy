@@ -8,12 +8,9 @@ public class PoolChild : MonoBehaviour
 {
     [HideInInspector]public ObjectPool objectPool;
 
-    public void Turn(Action action =null)
+    public void Turn()
     {
-        if (action != null)
-        {
-            action();
-        }
+       
         objectPool.TurnChild(this);
     }
     public void SetObjectPool(ObjectPool objectPool)

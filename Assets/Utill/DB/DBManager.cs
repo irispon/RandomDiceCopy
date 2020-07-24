@@ -17,7 +17,7 @@ public class DBManager :SingletonObject<DBManager>
 
     private string URI = "URI=file:";
     [SerializeField]
-    private string serverPath;
+    private string localPath;
     [SerializeField]
     bool isApp;
     public StringBuilder stringBuilder;
@@ -38,11 +38,17 @@ public class DBManager :SingletonObject<DBManager>
         {
             stringBuilder.Clear();
             filepath = stringBuilder.Append(Application.persistentDataPath).Append("/RandomDice.db").ToString();
-            Debug.Log("어플리케이션"+filepath);
+            string serverPath = stringBuilder.Append(Application.dataPath).Append("!/assets/RandomDice.db").ToString();
+            Debug.Log("어플리케이션"+filepath +" " + serverPath);
 
             stringBuilder.Clear();
-            if (!File.Exists(filepath))
+            if (!File.Exists(filepath)||!Certificate(filepath, serverPath))
             {
+                if (File.Exists(filepath))
+                {
+                    File.Delete(filepath);
+                }
+       
                 Debug.Log("DB존재X");
                 Debug.Log(stringBuilder.ToString());
                 UnityWebRequest unityWebRequest = UnityWebRequest.Get(stringBuilder.Append("jar:file://").Append(Application.dataPath).Append("!/assets/RandomDice.db").ToString());
@@ -56,41 +62,59 @@ public class DBManager :SingletonObject<DBManager>
         {
             Debug.Log("PC 플랫폼");
             filepath = Application.dataPath + "/RandomDice.db";
-            if (!File.Exists(filepath))
+            if (!File.Exists(filepath)|| !Certificate(filepath, Application.streamingAssetsPath + "/RandomDice.db"))
             {
                 Debug.Log(filepath);
+                if (File.Exists(filepath))
+                {
+                    File.Delete(filepath);
+                }
                 File.Copy(Application.streamingAssetsPath + "/RandomDice.db", filepath);
                 
             }
         }
 
 
-        serverPath = filepath;
+        localPath = filepath;
 
 
         
      //  serverPath = stringBuilder.Append(serverPath).Append("/").Append(dbName).Append(".db").ToString();
 
       
-       Debug.Log(serverPath);
+       Debug.Log(localPath);
         
 
-        string query = "SELECT Version FROM Certificate";
-       IDataReader reader= DataBaseRead(query);
 
-        while (reader.Read())
-        {
-            Debug.Log(reader.GetInt32(0));
-        }
         DontDestroyOnLoad(this);
 
       
       
     }
 
-    void AppInit()
+    bool Certificate(string localPath,string serverPath)
     {
- 
+        string query = "SELECT Version FROM Certificate";
+        IDataReader local = DataBaseRead(query, localPath);
+        IDataReader server = DataBaseRead(query, serverPath);
+
+        string localVersion="local";
+        string serverVersion="server";
+        while (local.Read())
+        {
+            localVersion = local.GetString(0);
+           
+        }
+        while (server.Read())
+        {
+
+            serverVersion = server.GetString(0);
+        }
+
+        Debug.Log(localVersion+"   "+serverVersion);
+
+        return localVersion.Equals(serverVersion);
+
 
     }
     /*
@@ -191,7 +215,7 @@ public class DBManager :SingletonObject<DBManager>
     public IDataReader DataBaseRead(string query)
     {
 
-        return DataBaseRead(query, serverPath);
+        return DataBaseRead(query, localPath);
         
     }
 
@@ -236,7 +260,7 @@ public class DBManager :SingletonObject<DBManager>
     {
 
         GC.Collect();
-        Close(serverPath);
+        Close(localPath);
         
     }
 

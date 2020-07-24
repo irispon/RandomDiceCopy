@@ -120,7 +120,7 @@ public class EnemyControler : MonoBehaviour
             FloatText floatText = damageIndecator.GetChild().GetComponent<FloatText>();
             // Debug.Log(floatText.name+"  " + floatText.isActiveAndEnabled);
             floatText.transform.position = transform.position;
-            floatText.GetDamage((int)damage);
+            floatText.GetDamage((int)damage,color);
 
         }
 

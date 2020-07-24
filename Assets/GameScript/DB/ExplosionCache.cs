@@ -28,13 +28,13 @@ public class ExplosionCache : SingletonObject<ExplosionCache>
                     explosion = new PoisonExplosion();
                     break;
                 case OfensiveType.Chain:
-                    explosion = new PoisonExplosion();
+                    explosion = new ChainExplosion();
                     break;
                 case OfensiveType.Debuff:
                     explosion = new IceExplosion();
                     break;
                 case OfensiveType.Direct:
-                    explosion = new PoisonExplosion();
+                    explosion =  new PoisonExplosion();
                     break;
                 case OfensiveType.Explosion:
                     explosion = new FireExplosion();

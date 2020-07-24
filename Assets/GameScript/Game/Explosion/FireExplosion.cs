@@ -8,9 +8,9 @@ public class FireExplosion : Explosion
     Collider2D[] enemies;
 
 
-    public override void Explode(BoxCollider2D box, AttackType attackType)
+    public override void Explode(BoxCollider2D warhead, AttackType attackType)
     {
-        enemies = GetTargets(box.transform, attackType);
+        enemies = GetTargets(warhead.transform, new Vector2(attackType.range,attackType.range));
 
         try
         {

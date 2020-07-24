@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: {fileID: -898507055680355665, guid: c1677885fc90e41408f7cf6e77c992da, type: 3}
-  max: 10
+  max: 20
 --- !u!114 &5291523300228469655
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -5,7 +5,7 @@ using UnityEngine;
 public interface IExplosion
 {
 
-    void Explode(BoxCollider2D box,AttackType attackType);
+    void Explode(BoxCollider2D warhead,AttackType attackType);
     void Turn();
 
 }

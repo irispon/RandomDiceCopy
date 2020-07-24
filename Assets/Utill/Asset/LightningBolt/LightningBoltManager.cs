@@ -12,7 +12,7 @@ public class LightningBoltManager : SingletonObject<LightningBoltManager>
 
 
 
-    public void Awake()
+    public override void Init()
     {
         if (boltPools == null)
         {
@@ -20,11 +20,12 @@ public class LightningBoltManager : SingletonObject<LightningBoltManager>
         }
     }
 
-    public List<PoolChild> ChainObjects(ICollection<GameObject> objects, Texture material=null)
+    public List<PoolChild> ChainObjects(ICollection<GameObject> objects, Texture material=null,float time =0.5f)
     {
         List<PoolChild> childs = new List<PoolChild>();
         child = boltPools.GetChild().GetComponent<LightningBoltScript>();
         childs.Add(child.GetComponent<PoolChild>());
+
         if (material != null)
         {
             child.lineRenderer.material.mainTexture = material;
@@ -36,6 +37,7 @@ public class LightningBoltManager : SingletonObject<LightningBoltManager>
         {
             if (count != 0)
             {
+                
                 if (child.StartObject == null)
                 {
                     child.StartObject = gameObject;
@@ -53,17 +55,27 @@ public class LightningBoltManager : SingletonObject<LightningBoltManager>
                     child.StartObject = tmpChild.EndObject;
                     child.EndObject = gameObject;
                 }
-
                 count--;
-
+           
 
 
             }
 
 
         }
-        Debug.Log("chains" +childs.Count);
+        StartCoroutine(Turn(time,childs));
         return childs;
+    }
+
+    IEnumerator Turn(float time,List<PoolChild> childs)
+    {
+        yield return new WaitForSeconds(time);
+        foreach(PoolChild child in childs)
+        {
+        //    Debug.Log("turn");
+            child.Turn();
+        }
+
     }
 
 

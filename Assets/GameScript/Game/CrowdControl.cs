@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Crowd;
+using System;
+
 public class CrowdControl : MonoBehaviour
 {
 
@@ -24,7 +26,14 @@ public class CrowdControl : MonoBehaviour
 
         this.spriteRenderer.sprite = sprite;
         crowd = Control(time, effect, followUpEffect);
-        StartCoroutine(crowd);
+
+        if (isActiveAndEnabled)
+        {
+            StartCoroutine(crowd);
+        }
+         
+  
+       
         
 
     }

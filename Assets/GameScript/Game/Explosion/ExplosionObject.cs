@@ -37,17 +37,21 @@ public class ExplosionObject : MonoBehaviour
         {
             sprite.sprite = null;
             explosion = ExplosionCache.GetInstance().GetExplosion(this.type.ofensiveType);
-            explosion.Explode(box, type);
-            if(animator.runtimeAnimatorController != null)
+            if (explosion != null)
             {
-                //Debug.Log("?");
-                animator.SetTrigger("Explosion");
+                explosion.Explode(box, type);
+                if (animator.runtimeAnimatorController != null)
+                {
+                    //Debug.Log("?");
+                    animator.SetTrigger("Explosion");
+                }
             }
+
            
         }
         catch(Exception e)
         {
-          Debug.Log("폭발 에러, 부모에 어택 타입이 존재하지 않거나 딕셔너리에 존재하지 않음"+e);
+          Debug.Log("  "+e);
         }
 
     }

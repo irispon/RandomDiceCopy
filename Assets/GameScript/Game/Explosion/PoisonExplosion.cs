@@ -7,11 +7,11 @@ public class PoisonExplosion : Explosion
 {
 
  
-    public override void Explode(BoxCollider2D box,AttackType attackType)
+    public override void Explode(BoxCollider2D warhead, AttackType attackType)
     {
         EnemyControler controler;
        
-        Collider2D target = GetTarget(box.transform);
+        Collider2D target = GetTarget(warhead.transform);
             try
             {
                 controler = target.GetComponent<EnemyControler>();
