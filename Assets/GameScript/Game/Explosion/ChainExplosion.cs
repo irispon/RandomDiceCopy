@@ -35,8 +35,17 @@ public class ChainExplosion : Explosion
             gameObjects.Add(targets[i].gameObject);
             controlers.Add(targets[i].GetComponent<EnemyControler>());
           
+
         }
-        List<PoolChild> childs = LightningBoltManager.GetInstance().ChainObjects(gameObjects,attackType.chainEffect.texture);
+        if (attackType.chainEffect != null)
+        {
+            List<PoolChild> childs = LightningBoltManager.GetInstance().ChainObjects(gameObjects, attackType.chainEffect.texture);
+        }
+        else
+        {
+            List<PoolChild> childs = LightningBoltManager.GetInstance().ChainObjects(gameObjects);
+        }
+ 
 
 
         foreach (EnemyControler controler in controlers)
