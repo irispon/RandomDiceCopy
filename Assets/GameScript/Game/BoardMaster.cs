@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BoardMaster : MonoBehaviour
+public class BoardMaster : SingletonObject<BoardMaster>
 {
     [SerializeField]
-    GameObject spwanPoint, destination;
+    public GameObject spwanPoint, destination;
     SpriteRenderer sprite;
     public Vector3 boardBound;
     Vector3 destinationBound;

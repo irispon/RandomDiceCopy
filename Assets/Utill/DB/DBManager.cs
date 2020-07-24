@@ -38,25 +38,20 @@ public class DBManager :SingletonObject<DBManager>
         {
             stringBuilder.Clear();
             filepath = stringBuilder.Append(Application.persistentDataPath).Append("/RandomDice.db").ToString();
-          //  string serverPath = stringBuilder.Append(Application.dataPath).Append("!/assets/RandomDice.db").ToString();
+          //  string serverPath = stringBuilder.Append("jar:file://").Append(Application.dataPath).Append("!/assets/RandomDice.db").ToString();
        //     Debug.Log("어플리케이션"+filepath +" " + serverPath);
 
             stringBuilder.Clear();
-            if (!File.Exists(filepath))
-            {
                 if (File.Exists(filepath))
                 {
                     File.Delete(filepath);
                 }
-       
-                Debug.Log("DB존재X");
-                Debug.Log(stringBuilder.ToString());
                 UnityWebRequest unityWebRequest = UnityWebRequest.Get(stringBuilder.Append("jar:file://").Append(Application.dataPath).Append("!/assets/RandomDice.db").ToString());
                 Debug.Log(unityWebRequest.downloadedBytes.ToString());
                 while (unityWebRequest.SendWebRequest().isDone) ;
                 File.WriteAllBytes(filepath, unityWebRequest.downloadHandler.data);
 
-            }
+   
         }
         else
         {

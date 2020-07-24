@@ -45,6 +45,20 @@ public class FieldOfView : MonoBehaviour
         return targetsInViewRadius;
     }
 
+    /// <summary>
+    /// 각도를 무시하고 전체 타겟을 불러옵니다.
+    /// </summary>
+    /// <returns></returns>
+    public Collider2D[] GetAllTargets()
+    {
+       
+
+        Collider2D[] targetsInViewRadius = Physics2D.OverlapCircleAll(transform.position, viewRadius, LayerMaskUtill.Composit(targetMask));
+
+
+
+        return targetsInViewRadius;
+    }
 
 
     public List<Transform> GetTargetsTransform(Act act=null)

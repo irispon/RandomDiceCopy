@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,7 +10,8 @@ public class DiceEye : MonoBehaviour
     string objectPoolKey;
     ObjectPool missileObjectPool;
     FieldOfView view;
-
+    BoardMaster master;
+    Vector2 standard;
     Dice dice;
     public void Awake()
     {
@@ -17,7 +19,9 @@ public class DiceEye : MonoBehaviour
         missileObjectPool = ObjectPoolManager.GetInstance().Get(objectPoolKey);
   //      Debug.Log(missileObjectPool == null);
         view = GetComponent<FieldOfView>();
-        
+        master = BoardMaster.GetInstance();
+        standard = master.destination.transform.position;
+
 
     }
     public void Init(Dice dice)
@@ -36,8 +40,9 @@ public class DiceEye : MonoBehaviour
 
     IEnumerator SearchAndDestroy()
     {
+        Collider2D target= GetTarget();
 
-           Collider2D target = view.GetTarget();
+    
             while (true)
             {
 
@@ -54,7 +59,7 @@ public class DiceEye : MonoBehaviour
                 else
                 {
                    
-                    target = view.GetTarget();
+                    target = GetTarget();
                     
 
                 }
@@ -62,7 +67,7 @@ public class DiceEye : MonoBehaviour
             }
             else
             {
-               target = view.GetTarget();
+               target = GetTarget();
             }
 
             yield return new WaitForSeconds(dice.diceStatus.attackType.attackSpeed);
@@ -73,4 +78,40 @@ public class DiceEye : MonoBehaviour
 
         }
 
+    private Collider2D GetTarget()
+    {
+        Collider2D[] targets = view.GetAllTargets();
+        Collider2D target = null;
+
+     
+        System.Array.Sort(targets, (x, y) => AngleDistance(y.transform).CompareTo(AngleDistance(x.transform)));
+      
+        try
+        {
+
+            target = targets[targets.Length-1];
+            Debug.Log("타겟"+target.name);
+        }
+        catch (Exception e)
+        {
+
+        }
+
+        return target;
     }
+    private float AngleDistance(Transform target)
+    {
+        Vector2 dirToTarget = ((Vector2)target.position - standard).normalized;
+        float angle = Vector2.Angle(Vector2.up, dirToTarget);
+        float distance = Vector2.Distance(standard, target.position);
+
+        angle = (float)Math.Truncate(angle);
+        distance = (float)Math.Truncate(distance) / 1000;
+        Debug.Log("transform"+ target.name+"  앵글:" + angle+"거리"+ distance+"결과"+(angle+distance));
+
+
+        return angle+distance;
+    }
+    }
+
+
