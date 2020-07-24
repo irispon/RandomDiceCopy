@@ -36,7 +36,7 @@ public class ChainExplosion : Explosion
             controlers.Add(targets[i].GetComponent<EnemyControler>());
           
         }
-        List<PoolChild> childs = LightningBoltManager.GetInstance().ChainObjects(gameObjects);
+        List<PoolChild> childs = LightningBoltManager.GetInstance().ChainObjects(gameObjects,attackType.chainEffect.texture);
 
 
         foreach (EnemyControler controler in controlers)

@@ -15,6 +15,7 @@ public struct AttackType
     public int range;
     public string introduction;
     public Sprite effect;
+    public Sprite chainEffect;
     public float potential;
     public RuntimeAnimatorController animationEffect;
 
