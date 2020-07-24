@@ -97,10 +97,13 @@
     <Compile Include="Assets\GameScript\Unit\MonsterStatus.cs" />
     <Compile Include="Assets\Insterface\Explosion.cs" />
     <Compile Include="Assets\Insterface\IExplosion.cs" />
-    <Compile Include="Assets\LightningBolt\LightningBoltScript.cs" />
+    <Compile Include="Assets\Test\transform.cs" />
     <Compile Include="Assets\Utill\APathFind.cs" />
     <Compile Include="Assets\Utill\Action\CrowdControlEffect.cs" />
     <Compile Include="Assets\Utill\Adadter.cs" />
+    <Compile Include="Assets\Utill\Asset\LightningBolt\ChainEffectChild.cs" />
+    <Compile Include="Assets\Utill\Asset\LightningBolt\LightningBoltManager.cs" />
+    <Compile Include="Assets\Utill\Asset\LightningBolt\LightningBoltScript.cs" />
     <Compile Include="Assets\Utill\BoolParser.cs" />
     <Compile Include="Assets\Utill\CallBack.cs" />
     <Compile Include="Assets\Utill\Camera\CameraResolution.cs" />
@@ -172,7 +175,7 @@
     <Compile Include="Assets\Utill\XMLManager.cs" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro.cginc" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Overlay.shader" />
-    <None Include="Assets\LightningBolt\Readme.txt" />
+    <None Include="Assets\Utill\Asset\LightningBolt\Readme.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap.shader" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface.shader" />

@@ -56,7 +56,7 @@ public class FieldOfView : MonoBehaviour
         for (int i = 0; i < targetsInViewRadius.Length; i++)
         {
             Transform target = targetsInViewRadius[i].transform;
-            Vector3 dirToTarget = (target.position - transform.position).normalized;// 방향 설정
+            Vector3 dirToTarget = (target.position - transform.position).normalized;// 방향
             if (Vector3.Angle(transform.up, dirToTarget) < viewAngle / 2)
             {
                 float dstToTarget = Vector3.Distance(transform.position, target.position);
