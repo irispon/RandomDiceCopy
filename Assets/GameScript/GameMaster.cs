@@ -17,6 +17,8 @@ public class GameMaster:MonoBehaviour
     [SerializeField]
     ObjectPool dicePool;
     [HideInInspector]public List<DiceSlot> pullDiceSlots;
+    [SerializeField]
+    public HPControler HPControler;
 
     private int playerMoney;
     private int cost;
@@ -30,7 +32,7 @@ public class GameMaster:MonoBehaviour
 
     public void Awake()
     {
-      
+       
         playerMoney = 3000;
         cost = 10;
         throwCostIncrease = 20;
@@ -44,8 +46,11 @@ public class GameMaster:MonoBehaviour
     {
         
     }
-
-   public void Throw()
+    private void Start()
+    {
+        HPControler.SetHP(5);
+    }
+    public void Throw()
     {
         if (emptyDiceSlots.Count>0)
         {

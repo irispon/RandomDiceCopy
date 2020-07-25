@@ -90,7 +90,7 @@ public class DiceEye : MonoBehaviour
         {
 
             target = targets[targets.Length-1];
-            Debug.Log("타겟"+target.name);
+          //  Debug.Log("타겟"+target.name);
         }
         catch (Exception e)
         {
@@ -107,10 +107,11 @@ public class DiceEye : MonoBehaviour
 
         angle = (float)Math.Truncate(angle);
         distance = (float)Math.Truncate(distance) / 1000;
-        Debug.Log("transform"+ target.name+"  앵글:" + angle+"거리"+ distance+"결과"+(angle+distance));
+       
+       // Debug.Log("transform"+ target.name+"  앵글:" + angle+"거리"+ distance+"결과"+(angle+distance));
+      
 
-
-        return angle+distance;
+        return angle +distance;
     }
     }
 

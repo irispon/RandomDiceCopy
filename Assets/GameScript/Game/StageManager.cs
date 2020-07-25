@@ -13,7 +13,7 @@ public class StageManager : SingletonObject<StageManager>
 
     [SerializeField]
     TextMeshProUGUI level, timer;
-
+     public GameObject Out;
 
   
    public override void Init()
@@ -100,5 +100,22 @@ public class StageManager : SingletonObject<StageManager>
             spwan.SetEnemy(stageLevel);
         }
         
+    }
+
+    public void Quite()
+    {
+        Time.timeScale = 1;
+    
+          #if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+          #endif
+        Application.Quit(); //어플리케이션 종료
+
+    }
+
+   public void ReGame()
+    {
+        LoadingManager.LoadScene("Game", "게임 다시 시작중");
+        Time.timeScale = 1;
     }
 }

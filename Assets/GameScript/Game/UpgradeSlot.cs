@@ -18,7 +18,7 @@ public class UpgradeSlot : MonoBehaviour
         manager = GetComponent<ImageTextManager>();
         image = GetComponent<Image>();
         stringBuilder = new StringBuilder();
-        master = GameObject.Find("UserBoard").GetComponent<GameMaster>();
+        master = GameObject.Find(BoardType.UserBoard.ToString()).GetComponent<GameMaster>();
     }
 
     public void SetDiceStatus( DiceStatus diceStatus)

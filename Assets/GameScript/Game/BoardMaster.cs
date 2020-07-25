@@ -8,6 +8,7 @@ public class BoardMaster : SingletonObject<BoardMaster>
     public GameObject spwanPoint, destination;
     SpriteRenderer sprite;
     public Vector3 boardBound;
+    //public GameMaster master;
     Vector3 destinationBound;
 
 

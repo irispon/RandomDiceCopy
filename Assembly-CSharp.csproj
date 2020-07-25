@@ -69,7 +69,9 @@
     <Compile Include="Assets\GameScript\DB\Deck.cs" />
     <Compile Include="Assets\GameScript\DB\DiceCache.cs" />
     <Compile Include="Assets\GameScript\DB\ExplosionCache.cs" />
+    <Compile Include="Assets\GameScript\Destination.cs" />
     <Compile Include="Assets\GameScript\Game\BoardMaster.cs" />
+    <Compile Include="Assets\GameScript\Game\BoardType.cs" />
     <Compile Include="Assets\GameScript\Game\CrowdControl.cs" />
     <Compile Include="Assets\GameScript\Game\DiceSlotPuncher.cs" />
     <Compile Include="Assets\GameScript\Game\Explosion\ChainExplosion.cs" />
@@ -161,6 +163,7 @@
     <Compile Include="Assets\Utill\SizeFitter.cs" />
     <Compile Include="Assets\Utill\SpriteSize.cs" />
     <Compile Include="Assets\Utill\UI\FloatText.cs" />
+    <Compile Include="Assets\Utill\UI\HPControler.cs" />
     <Compile Include="Assets\Utill\UI\ImageTextManager.cs" />
     <Compile Include="Assets\Utill\UI\Loading\ILoader.cs" />
     <Compile Include="Assets\Utill\UI\Loading\LoadingManager.cs" />

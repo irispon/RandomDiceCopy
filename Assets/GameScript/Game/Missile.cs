@@ -81,7 +81,7 @@ public class Missile : MonoBehaviour
             //float damage = attackType.damage + attackType.potential* diceStatus.reinforce;
           //  Debug.Log(name+"  "+collision.name);
             targetObject.Damage(attackType.damage);
-            explosion.Explode(attackType);
+            explosion.Explode(target, attackType);
 
 
             if (hasAnimation)

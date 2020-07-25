@@ -8,7 +8,7 @@ public class ExplosionObject : MonoBehaviour
 
     //애니메이션 관련 변수 추가
     IExplosion explosion;
-    BoxCollider2D box;
+    BoxCollider2D warHead;
     Animator animator;
     public AttackType type;
     Transform parent;
@@ -16,7 +16,7 @@ public class ExplosionObject : MonoBehaviour
 
     public void Awake()
     {
-        box = GetComponent<BoxCollider2D>();
+        warHead = GetComponent<BoxCollider2D>();
         animator = GetComponent<Animator>();
         parent = transform.parent;
         sprite = GetComponent<SpriteRenderer>();
@@ -31,7 +31,7 @@ public class ExplosionObject : MonoBehaviour
         sprite.sprite = null;
     }
 
-    public void Explode(AttackType type)
+    public void Explode(Collider2D target,AttackType type)
     {
         try
         {
@@ -39,7 +39,7 @@ public class ExplosionObject : MonoBehaviour
             explosion = ExplosionCache.GetInstance().GetExplosion(this.type.ofensiveType);
             if (explosion != null)
             {
-                explosion.Explode(box, type);
+                explosion.Explode(target,warHead, type);
                 if (animator.runtimeAnimatorController != null)
                 {
                     //Debug.Log("?");

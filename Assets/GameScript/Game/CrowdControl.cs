@@ -62,4 +62,13 @@ public class CrowdControl : MonoBehaviour
         spriteRenderer.sprite = null;
         crowd = null;
     }
+    private void OnEnable()
+    {
+        if (crowd != null)
+        {
+            StopCoroutine(crowd);
+        }
+        spriteRenderer.sprite = null;
+        crowd = null;
+    }
 }

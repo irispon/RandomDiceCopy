@@ -36,7 +36,7 @@ public class EnemyControler : MonoBehaviour
     }
     void Start()
     {
-        master = GameObject.Find("UserBoard").GetComponent<GameMaster>();
+        master = GameObject.Find(BoardType.UserBoard.ToString()).GetComponent<GameMaster>();
         child = GetComponent<PoolChild>();
         if (!damageIndcatorsKey.Equals(""))
         {
@@ -127,7 +127,9 @@ public class EnemyControler : MonoBehaviour
 
         if (enemy.hp <= 0)
         {
+            master.AddMoeny(100);
             Turn();
+           
         }
     }
     public void Debuff(float coefficient,float time ,EnemyStat stat)
@@ -168,7 +170,7 @@ public class EnemyControler : MonoBehaviour
     }
     private void Turn()
     {
-        master.AddMoeny(100);
+
         destinations.Clear();
         child.Turn();
 

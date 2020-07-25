@@ -9,7 +9,7 @@ public class ChainExplosion : Explosion
     readonly List<GameObject> gameObjects = new List<GameObject>();
     readonly List<EnemyControler> controlers = new List<EnemyControler>();
   
-    public override void Explode(BoxCollider2D warhead, AttackType attackType)
+    public override void Explode(Collider2D target, BoxCollider2D warhead, AttackType attackType)
     {
  
         Collider2D[] targets = GetTargets(warhead.transform);

@@ -42,14 +42,15 @@ public class DBManager :SingletonObject<DBManager>
        //     Debug.Log("어플리케이션"+filepath +" " + serverPath);
 
             stringBuilder.Clear();
-                if (File.Exists(filepath))
+                if (!File.Exists(filepath))
                 {
-                    File.Delete(filepath);
-                }
+                //  File.Delete(filepath);
                 UnityWebRequest unityWebRequest = UnityWebRequest.Get(stringBuilder.Append("jar:file://").Append(Application.dataPath).Append("!/assets/RandomDice.db").ToString());
                 Debug.Log(unityWebRequest.downloadedBytes.ToString());
                 while (unityWebRequest.SendWebRequest().isDone) ;
                 File.WriteAllBytes(filepath, unityWebRequest.downloadHandler.data);
+              }
+
 
    
         }
