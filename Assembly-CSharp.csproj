@@ -153,6 +153,7 @@
     <Compile Include="Assets\Utill\List\Option.cs" />
     <Compile Include="Assets\Utill\Loader\Loader.cs" />
     <Compile Include="Assets\Utill\Loader\TestLoader.cs" />
+    <Compile Include="Assets\Utill\MainCamera.cs" />
     <Compile Include="Assets\Utill\ObjectManager.cs" />
     <Compile Include="Assets\Utill\ObjectPool\ObjectPool.cs" />
     <Compile Include="Assets\Utill\ObjectPool\ObjectPoolManager.cs" />

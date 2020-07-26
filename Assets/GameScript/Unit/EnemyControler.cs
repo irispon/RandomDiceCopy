@@ -99,6 +99,10 @@ public class EnemyControler : MonoBehaviour
         this.enemy = enemy;
         text.text = enemy.maxHp.ToString();
         enemy.hp = enemy.maxHp;
+        if (enemy.sprite != null)
+        {
+            sprite.sprite = enemy.sprite;
+        }
         if (destinations.Count > 0)
         {
             StartCoroutine(MoveTo(destinations.Dequeue()));
@@ -129,6 +133,11 @@ public class EnemyControler : MonoBehaviour
         {
             master.AddMoeny(100);
             Turn();
+            if (enemy.isBoss)
+            {
+                StageManager.GetInstance().Vitory();
+            }
+
            
         }
     }

@@ -31,11 +31,12 @@ public class DBManager :SingletonObject<DBManager>
 
 
        stringBuilder = new StringBuilder();
-       Debug.Log("DB 초기화");
+     
 
         string filepath = string.Empty;
         if(Application.platform == RuntimePlatform.Android)
         {
+            Debug.Log("안드로이드 플랫폼");
             stringBuilder.Clear();
             filepath = stringBuilder.Append(Application.persistentDataPath).Append("/RandomDice.db").ToString();
           //  string serverPath = stringBuilder.Append("jar:file://").Append(Application.dataPath).Append("!/assets/RandomDice.db").ToString();
@@ -44,12 +45,16 @@ public class DBManager :SingletonObject<DBManager>
             stringBuilder.Clear();
                 if (!File.Exists(filepath))
                 {
+                Debug.Log("안드로이드 실행1"+ filepath);
                 //  File.Delete(filepath);
                 UnityWebRequest unityWebRequest = UnityWebRequest.Get(stringBuilder.Append("jar:file://").Append(Application.dataPath).Append("!/assets/RandomDice.db").ToString());
-                Debug.Log(unityWebRequest.downloadedBytes.ToString());
+               // Debug.Log(unityWebRequest.downloadedBytes.ToString());
+                unityWebRequest.downloadedBytes.ToString();
+                Debug.Log("안드로이드 실행2");
                 while (unityWebRequest.SendWebRequest().isDone) ;
                 File.WriteAllBytes(filepath, unityWebRequest.downloadHandler.data);
-              }
+                Debug.Log("안드로이드 실행3");
+            }
 
 
    

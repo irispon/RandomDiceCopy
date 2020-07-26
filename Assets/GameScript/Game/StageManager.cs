@@ -13,7 +13,8 @@ public class StageManager : SingletonObject<StageManager>
 
     [SerializeField]
     TextMeshProUGUI level, timer;
-     public GameObject Out;
+    public GameObject Out;
+    public GameObject victory;
 
   
    public override void Init()
@@ -117,5 +118,16 @@ public class StageManager : SingletonObject<StageManager>
     {
         LoadingManager.LoadScene("Game", "게임 다시 시작중");
         Time.timeScale = 1;
+    }
+
+    public void Vitory()
+    {
+        MainCamera.GetInstance().canvas.sortingLayerName = "UI";
+        Debug.Log("victory");
+        victory.SetActive(true);
+
+        Time.timeScale = 0;
+        Time.timeScale = 0;
+
     }
 }

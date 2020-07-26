@@ -53,8 +53,11 @@ public class HPControler : MonoBehaviour
       //  Debug.Log(hitPoint);
         if (hitPoint <= 0)
         {
+            //이 부분은 리펙토링 해야함. 리턴 값을 넘겨주던 콜백을 하던 해야함.
+            MainCamera.GetInstance().canvas.sortingLayerName = "UI";
             Debug.Log("GameOver");
             StageManager.GetInstance().Out.SetActive(true);
+
             Time.timeScale = 0;
         }
         foreach (GameObject hp in hpObjects)

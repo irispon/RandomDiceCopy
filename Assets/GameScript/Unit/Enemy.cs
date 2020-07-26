@@ -9,6 +9,7 @@ public class Enemy
     public int hp;
     public float speed;
     public Sprite sprite;
+    public bool isBoss=false;
 
     public Enemy Clone()
     {

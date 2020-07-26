@@ -12,7 +12,7 @@ public class Spwan : MonoBehaviour
     [SerializeField]
     Vector2 spwanTime, enemyHp, enemySpeed;
     bool boss = false;
-
+    EnemyCache enemyCache;
     Queue<Vector3> destinations; 
     PoolChild child;
     /// <summary>
@@ -32,7 +32,9 @@ public class Spwan : MonoBehaviour
         StageManager.GetInstance().Join(this);
         enemyHp = new Vector2(60, 200);
         enemySpeed = new Vector2(3f, 5f);
+        enemyCache = EnemyCache.GetInstance();
         StartCoroutine(SpwanMonster());
+        
 
 
     }
@@ -48,15 +50,10 @@ public class Spwan : MonoBehaviour
             enemy.maxHp = (int)Random.Range(enemyHp.x, enemyHp.y);
             enemy.speed = Random.Range(enemySpeed.x, enemySpeed.y);
             enemy.speed =(float)System.Math.Truncate(enemy.speed * 10 / 10);
-           // Random.Range(0.025f, 0.1f)
-            GameObject enemyObject = enemyObjectPool.GetChild();
- 
-            
-            enemyObject.transform.SetParent(transform.parent);
-            enemyObject.transform.localPosition= board.FirstVertex();
-            enemyObject.transform.localScale = new Vector3(1, 1, 1);
+            enemy.sprite = enemyCache.normalEnemies[Random.Range(0,enemyCache.normalEnemies.Count)];
+            // Random.Range(0.025f, 0.1f)
+            SpwanEnemy(enemy);
 
-            enemyObject.GetComponent<EnemyControler>().SetEnemy(enemy,destinations,board.FirstVertex());
             yield return new WaitForSeconds(Random.Range(spwanTime.x, spwanTime.y));
         }
 
@@ -72,8 +69,19 @@ public class Spwan : MonoBehaviour
     public void SpwanBoss()
     {
         Debug.Log("보스 생성");
+        Enemy bossMonster = DictionaryAccessUtill.RandomValue(enemyCache.bosses);
+        bossMonster.isBoss = true;
+        SpwanEnemy(bossMonster);
         boss = true;
+
     }
 
-
+    public void SpwanEnemy(Enemy enemy)
+    {
+        GameObject enemyObject = enemyObjectPool.GetChild();
+        enemyObject.transform.SetParent(transform.parent);
+        enemyObject.transform.localPosition = board.FirstVertex();
+        enemyObject.transform.localScale = new Vector3(1, 1, 1);
+        enemyObject.GetComponent<EnemyControler>().SetEnemy(enemy, destinations, board.FirstVertex());
+    }
 }
