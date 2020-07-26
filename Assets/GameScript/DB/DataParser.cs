@@ -99,6 +99,75 @@ public class DataParser
 
 
     }
+
+    public void EnemyParse()
+    {
+        string sql = "SELECT*FROM Enemy ";
+        IDataReader dataReader = DBManager.GetInstance().DataBaseRead(sql);
+        EnemyCache enemyCache = EnemyCache.GetInstance();
+        while (dataReader.Read())
+        {
+            string spritePath = string.Empty;
+            spritePath = dataReader.GetString(0);
+
+            if (Application.platform == RuntimePlatform.Android)
+            {
+
+                spritePath = spritePath.Replace("./Assets/Resources/", "").Replace(".png", "");
+                Sprite sprite = Resources.Load<Sprite>(spritePath);
+                enemyCache.normalEnemies.Add(sprite);
+
+
+            }
+            else
+            {
+                Sprite sprite = SpriteLoader.LoadNewSprite(spritePath);
+                enemyCache.normalEnemies.Add(sprite);
+               
+
+            }
+        }
+        sql = "SELECT*FROM Boss";
+        dataReader = DBManager.GetInstance().DataBaseRead(sql);
+
+        while (dataReader.Read())
+        {
+            Enemy boss = new Enemy();
+        
+            string spritePath = string.Empty;
+            string name=dataReader.GetString(0);
+            spritePath = dataReader.GetString(1);
+
+            enemyCache.bosses.Add(name, boss);
+            boss.speed = dataReader.GetFloat(2);
+        //    Debug.Log(dataReader.GetFloat(2));
+            boss.hp = dataReader.GetInt32(4);
+            Sprite sprite;
+
+            if (Application.platform == RuntimePlatform.Android)
+            {
+
+                spritePath = spritePath.Replace("./Assets/Resources/", "").Replace(".png", "");
+                sprite = Resources.Load<Sprite>(spritePath);
+               
+
+
+            }
+            else
+            {
+                sprite = SpriteLoader.LoadNewSprite(spritePath);
+
+
+
+            }
+
+
+            boss.sprite = sprite;
+            boss.maxHp = boss.hp;
+          
+        }
+
+    }
     public bool IDcheck(string id,string password)
     {
         

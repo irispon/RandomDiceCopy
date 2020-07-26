@@ -68,6 +68,7 @@
     <Compile Include="Assets\GameScript\DB\DataParser.cs" />
     <Compile Include="Assets\GameScript\DB\Deck.cs" />
     <Compile Include="Assets\GameScript\DB\DiceCache.cs" />
+    <Compile Include="Assets\GameScript\DB\EnemyCache.cs" />
     <Compile Include="Assets\GameScript\DB\ExplosionCache.cs" />
     <Compile Include="Assets\GameScript\Destination.cs" />
     <Compile Include="Assets\GameScript\Game\BoardMaster.cs" />
