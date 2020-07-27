@@ -7,7 +7,7 @@ public class TestLoader :Loader
 {
 
 
-    public override string getContext()
+    public override string GetContext()
     {
         return context;
     }

@@ -45,15 +45,12 @@ public class DBManager :SingletonObject<DBManager>
             stringBuilder.Clear();
                 if (!File.Exists(filepath))
                 {
-                Debug.Log("안드로이드 실행1"+ filepath);
                 //  File.Delete(filepath);
                 UnityWebRequest unityWebRequest = UnityWebRequest.Get(stringBuilder.Append("jar:file://").Append(Application.dataPath).Append("!/assets/RandomDice.db").ToString());
                // Debug.Log(unityWebRequest.downloadedBytes.ToString());
                 unityWebRequest.downloadedBytes.ToString();
-                Debug.Log("안드로이드 실행2");
                 while (unityWebRequest.SendWebRequest().isDone) ;
                 File.WriteAllBytes(filepath, unityWebRequest.downloadHandler.data);
-                Debug.Log("안드로이드 실행3");
             }
 
 

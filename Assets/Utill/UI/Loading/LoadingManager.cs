@@ -72,7 +72,7 @@ public class LoadingManager : SingletonObject<LoadingManager>
             {
                 loader.Clear();
                 progressBar.fillAmount = 0;
-                progressText.text = loader.getContext();
+                progressText.text = loader.GetContext();
                 timer = 0.0f;
               
 
@@ -91,7 +91,7 @@ public class LoadingManager : SingletonObject<LoadingManager>
      
                     yield return null;
                     timer =(timer+Time.deltaTime)*0.1f;
-                    progressText.text = loader.getContext();
+                    progressText.text = loader.GetContext();
                    // Debug.Log("로더 루프 확인"+ loader.isDone());
                     if (loader.IsDone())
                     {

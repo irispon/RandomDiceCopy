@@ -127,6 +127,8 @@ public class DataParser
 
             }
         }
+
+
         sql = "SELECT*FROM Boss";
         dataReader = DBManager.GetInstance().DataBaseRead(sql);
 
